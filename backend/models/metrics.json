@@ -1,0 +1,201 @@
+{
+  "accuracy": 1.0,
+  "f1_macro": 0.9446,
+  "trained_at": "2026-10-29T20:47:47.970802+00:00",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "bert_threshold": 0.7,
+  "per_class": [
+    {
+      "category": "API Failure",
+      "precision": 0.9667,
+      "recall": 0.9667,
+      "f1": 0.9667,
+      "support": 60
+    },
+    {
+      "category": "Database Error",
+      "precision": 1.0,
+      "recall": 0.9571,
+      "f1": 0.9781,
+      "support": 70
+    },
+    {
+      "category": "Login Failure",
+      "precision": 1.0,
+      "recall": 0.9512,
+      "f1": 0.975,
+      "support": 41
+    },
+    {
+      "category": "Payment Issue",
+      "precision": 0.7869,
+      "recall": 0.9796,
+      "f1": 0.8727,
+      "support": 49
+    },
+    {
+      "category": "Resource Usage",
+      "precision": 1.0,
+      "recall": 0.9565,
+      "f1": 0.9778,
+      "support": 46
+    },
+    {
+      "category": "Security Alert",
+      "precision": 0.8148,
+      "recall": 0.9565,
+      "f1": 0.88,
+      "support": 23
+    },
+    {
+      "category": "User Action",
+      "precision": 1.0,
+      "recall": 0.9077,
+      "f1": 0.9516,
+      "support": 65
+    },
+    {
+      "category": "Workflow Error",
+      "precision": 1.0,
+      "recall": 0.913,
+      "f1": 0.9545,
+      "support": 46
+    }
+  ],
+  "confusion_matrix": {
+    "labels": [
+      "API Failure",
+      "Database Error",
+      "Login Failure",
+      "Payment Issue",
+      "Resource Usage",
+      "Security Alert",
+      "User Action",
+      "Workflow Error"
+    ],
+    "matrix": [
+      [
+        58,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        67,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        39,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        48,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        44,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        22,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        3,
+        0,
+        2,
+        59,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        42
+      ]
+    ]
+  },
+  "dbscan": {
+    "eps": 0.35,
+    "min_samples": 3,
+    "n_clusters": 2,
+    "n_noise": 15,
+    "low_confidence_rows": 61
+  },
+  "baseline_comparison": [
+    {
+      "approach": "Rule-based only",
+      "f1": 0.7618,
+      "false_alert_rate": 0.0702
+    },
+    {
+      "approach": "ML only",
+      "f1": 1.0,
+      "false_alert_rate": 0.0
+    },
+    {
+      "approach": "Hybrid",
+      "f1": 0.9446,
+      "false_alert_rate": 0.0501
+    }
+  ],
+  "classifier_usage": [
+    {
+      "classified_by": "Regex",
+      "share": 0.7125
+    },
+    {
+      "classified_by": "BERT+LogReg",
+      "share": 0.285
+    },
+    {
+      "classified_by": "LLM",
+      "share": 0.0025
+    },
+    {
+      "classified_by": "DBSCAN",
+      "share": 0.0
+    }
+  ]
+}

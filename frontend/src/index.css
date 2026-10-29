@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme (default) */
+  --bg: 60 9% 98%; /* #FAFAF8 */
+  --surface: 0 0% 100%; /* #FFFFFF */
+  --subtle: 48 11% 95%; /* #F4F3EF */
+  --border: 40 6% 90%; /* #E7E5E0 */
+  --text: 30 3% 11%; /* #1C1B1A */
+  --muted: 30 4% 42%; /* #6B6862 */
+  --accent: 175 77% 26%; /* #0F766E */
+  --accent-foreground: 0 0% 100%;
+
+  /* Severity */
+  --sev-critical: 4 72% 40%; /* #B42318 */
+  --sev-high: 17 81% 42%; /* #C2410C */
+  --sev-medium: 32 80% 35%; /* #A16207 */
+  --sev-low: 215 16% 37%; /* #475569 */
+  --sev-unknown: 258 32% 51%; /* #6D5BA8 */
+}
+
+.dark {
+  /* Dark theme (secondary) */
+  --bg: 60 2% 8%; /* #141413 */
+  --surface: 60 2% 11%; /* #1B1B1A */
+  --subtle: 60 2% 13%; /* #222221 */
+  --border: 40 2% 18%; /* #2E2D2B */
+  --text: 40 10% 92%; /* #ECEAE6 */
+  --muted: 30 5% 61%; /* #9A968E */
+  --accent: 172 66% 50%; /* #2DD4BF */
+  --accent-foreground: 60 2% 8%;
+
+  --sev-critical: 4 72% 56%;
+  --sev-high: 17 81% 58%;
+  --sev-medium: 32 80% 55%;
+  --sev-low: 215 16% 65%;
+  --sev-unknown: 258 45% 72%;
+}
+
+* {
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+html {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  @apply bg-bg text-text text-[13px] antialiased;
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-mono,
+code,
+pre,
+.log-mono {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+table {
+  font-variant-numeric: tabular-nums;
+}
+

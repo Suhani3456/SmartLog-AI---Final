@@ -1,0 +1,501 @@
+timestamp,source,level,message
+2026-10-30 10:08:00,CRM,ERROR,"2026-10-30 10:08:00 crm-app-09 db: connection timeout after 51s, req_id=4a7463"
+2026-10-30 16:42:00,Cloud/Server,WARN,2026-10-30 16:42:00 node-04 kubelet: pod df3467 restarted 1 times
+2026-10-30 09:50:00,HRMS,ERROR,2026-10-30 09:50:00 hrms-web-04 employee 8967 profile updated
+2026-10-30 00:49:00,Cloud/Server,INFO,"2026-10-30 00:49:00 node-07 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 13:25:00,CRM,WARN,2026-10-30 13:25:00 crm-app-10 api: failed to fetch customer 1436 details
+2026-10-30 06:33:00,Cloud/Server,INFO,2026-10-30 06:33:00 node-03 db: deadlock detected on transaction 7bb353
+2026-10-30 17:33:00,Billing,WARN,"2026-10-30 17:33:00 billing-api-10 payment: transaction declined, card token bed02d, amount=$136.50"
+2026-10-30 12:55:00,CRM,ERROR,2026-10-30 12:55:00 crm-app-05 sync: replication lag detected 4600ms
+2026-10-30 02:53:00,Cloud/Server,INFO,2026-10-30 02:53:00 node-09 db: deadlock detected on transaction d60c77
+2026-10-30 10:07:00,Billing,WARN,2026-10-30 10:07:00 billing-api-02 invoice: generation failed for invoice 7b0483
+2026-10-30 17:31:00,HRMS,INFO,2026-10-30 17:31:00 hrms-web-07 employee 5860 profile updated
+2026-10-30 15:25:00,Cloud/Server,INFO,2026-10-30 15:25:00 node-04 nginx: 502 Bad Gateway for /api/users
+2026-10-30 17:36:00,Billing,INFO,"2026-10-30 17:36:00 billing-api-04 payment: transaction declined, card token d02b37, amount=$190.67"
+2026-10-30 20:59:00,CRM,INFO,2026-10-30 20:59:00 crm-app-04 sync: replication lag detected 220ms
+2026-10-30 19:27:00,Billing,INFO,"2026-10-30 19:27:00 billing-api-05 payment: transaction declined, card token e438f0, amount=$140.28"
+2026-10-30 06:23:00,Cloud/Server,INFO,2026-10-30 06:23:00 node-04 kubelet: pod d5894b restarted 4 times
+2026-10-30 09:41:00,Cloud/Server,WARN,2026-10-30 09:41:00 node-05 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 07:52:00,Cloud/Server,ERROR,2026-10-30 07:52:00 node-07 system: disk usage 70% on /var/log
+2026-10-30 17:37:00,Cloud/Server,WARN,"2026-10-30 17:37:00 node-02 api: upstream timed out retrieving /v2/orders, host=svc-2"
+2026-10-30 02:04:00,CRM,INFO,2026-10-30 02:04:00 crm-app-09 sync: replication lag detected 4921ms
+2026-10-30 07:06:00,CRM,WARN,2026-10-30 07:06:00 crm-app-02 user 5775 logged in from 192.168.254.75
+2026-10-30 02:28:00,HRMS,WARN,2026-10-30 02:28:00 hrms-web-08 payroll: batch job 03de19 failed due to timeout
+2026-10-30 23:52:00,CRM,INFO,2026-10-30 23:52:00 crm-app-08 sync: replication lag detected 2692ms
+2026-10-30 19:47:00,HRMS,INFO,2026-10-30 19:47:00 hrms-web-01 employee 6717 profile updated
+2026-10-30 11:02:00,CRM,WARN,"2026-10-30 11:02:00 crm-app-04 db: connection timeout after 21s, req_id=543c60"
+2026-10-30 22:48:00,Billing,WARN,"2026-10-30 22:48:00 billing-api-06 payment: transaction declined, card token 4c7127, amount=$402.86"
+2026-10-30 23:01:00,CRM,WARN,2026-10-30 23:01:00 crm-app-10 user 4183 logged in from 192.168.6.40
+2026-10-30 05:22:00,Cloud/Server,INFO,2026-10-30 05:22:00 node-08 nginx: 502 Bad Gateway for /api/users
+2026-10-30 20:15:00,Cloud/Server,ERROR,2026-10-30 20:15:00 node-05 db: deadlock detected on transaction 0bad67
+2026-10-30 00:43:00,Cloud/Server,WARN,"2026-10-30 00:43:00 node-05 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 13:27:00,Cloud/Server,INFO,2026-10-30 13:27:00 node-07 nginx: 502 Bad Gateway for /api/users
+2026-10-30 18:23:00,HRMS,INFO,2026-10-30 18:23:00 hrms-web-06 employee 9706 profile updated
+2026-10-30 03:22:00,Cloud/Server,INFO,2026-10-30 03:22:00 node-07 kubelet: pod 2ffcbe restarted 4 times
+2026-10-30 11:14:00,Cloud/Server,WARN,2026-10-30 11:14:00 node-02 db: deadlock detected on transaction ec6bce
+2026-10-30 19:18:00,Billing,CRITICAL,2026-10-30 19:18:00 billing-api-07 charge: retrying for order 7eede3
+2026-10-30 19:11:00,HRMS,INFO,2026-10-30 19:11:00 hrms-web-04 session: expired for user_id=8067
+2026-10-30 07:02:00,CRM,INFO,2026-10-30 07:02:00 crm-app-01 api: failed to fetch customer 6722 details
+2026-10-30 12:29:00,Cloud/Server,ERROR,2026-10-30 12:29:00 node-06 nginx: 502 Bad Gateway for /api/users
+2026-10-30 10:58:00,HRMS,ERROR,2026-10-30 10:58:00 hrms-web-03 auth: login failed for user_id=4127 invalid password
+2026-10-30 08:21:00,Cloud/Server,INFO,2026-10-30 08:21:00 node-03 kubelet: pod 1f3f68 restarted 4 times
+2026-10-30 17:02:00,Billing,INFO,2026-10-30 17:02:00 billing-api-06 charge: retrying for order 07657a
+2026-10-30 05:58:00,HRMS,INFO,2026-10-30 05:58:00 hrms-web-07 employee 1356 profile updated
+2026-10-30 02:04:00,Cloud/Server,WARN,2026-10-30 02:04:00 node-10 nginx: 502 Bad Gateway for /api/users
+2026-10-30 01:12:00,HRMS,INFO,2026-10-30 01:12:00 hrms-web-09 session: expired for user_id=3508
+2026-10-30 12:32:00,Billing,ERROR,2026-10-30 12:32:00 billing-api-02 payment gateway: timeout after 31s
+2026-10-30 05:39:00,CRM,ERROR,2026-10-30 05:39:00 crm-app-04 user 7522 logged in from 192.168.209.135
+2026-10-30 09:34:00,Cloud/Server,INFO,2026-10-30 09:34:00 node-01 kubelet: pod a5ff20 restarted 3 times
+2026-10-30 07:53:00,Cloud/Server,ERROR,2026-10-30 07:53:00 node-10 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 02:19:00,Cloud/Server,ERROR,2026-10-30 02:19:00 node-03 db: deadlock detected on transaction 9d2d23
+2026-10-30 12:00:00,Cloud/Server,INFO,2026-10-30 12:00:00 node-02 nginx: 502 Bad Gateway for /api/users
+2026-10-30 02:10:00,HRMS,CRITICAL,2026-10-30 02:10:00 hrms-web-08 auth: login failed for user_id=4522 invalid password
+2026-10-30 20:07:00,HRMS,WARN,2026-10-30 20:07:00 hrms-web-07 payroll: batch job a2c549 failed due to timeout
+2026-10-30 13:55:00,CRM,INFO,2026-10-30 13:55:00 crm-app-07 user 9556 logged in from 192.168.20.85
+2026-10-30 09:45:00,CRM,ERROR,2026-10-30 09:45:00 crm-app-05 user 2385 logged in from 192.168.8.28
+2026-10-30 17:17:00,Billing,INFO,"2026-10-30 17:17:00 billing-api-03 payment: transaction declined, card token 042d61, amount=$205.23"
+2026-10-30 23:11:00,HRMS,INFO,2026-10-30 23:11:00 hrms-web-09 payroll: batch job ed142f failed due to timeout
+2026-10-30 11:12:00,Billing,WARN,2026-10-30 11:12:00 billing-api-09 invoice: generation failed for invoice 06e9c9
+2026-10-30 23:00:00,Billing,WARN,2026-10-30 23:00:00 billing-api-02 charge: retrying for order 73c4d1
+2026-10-30 14:42:00,Cloud/Server,INFO,2026-10-30 14:42:00 node-08 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 02:24:00,CRM,INFO,2026-10-30 02:24:00 crm-app-04 sync: replication lag detected 3942ms
+2026-10-30 02:50:00,Cloud/Server,INFO,"2026-10-30 02:50:00 node-08 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 04:27:00,Cloud/Server,INFO,2026-10-30 04:27:00 node-04 kubelet: pod 1a7fbb restarted 4 times
+2026-10-30 13:55:00,Cloud/Server,INFO,2026-10-30 13:55:00 node-08 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 20:43:00,Billing,WARN,2026-10-30 20:43:00 billing-api-01 payment gateway: timeout after 11s
+2026-10-30 18:37:00,Cloud/Server,WARN,2026-10-30 18:37:00 node-06 db: deadlock detected on transaction 5dd860
+2026-10-30 05:21:00,Cloud/Server,INFO,2026-10-30 05:21:00 node-05 kubelet: pod 34ab79 restarted 3 times
+2026-10-30 23:58:00,Cloud/Server,WARN,"2026-10-30 23:58:00 node-06 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 16:43:00,Cloud/Server,WARN,2026-10-30 16:43:00 node-01 system: disk usage 71% on /var/log
+2026-10-30 05:25:00,Cloud/Server,ERROR,"2026-10-30 05:25:00 node-03 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 21:15:00,HRMS,ERROR,2026-10-30 21:15:00 hrms-web-07 employee 4316 profile updated
+2026-10-30 06:15:00,HRMS,WARN,2026-10-30 06:15:00 hrms-web-09 employee 8857 profile updated
+2026-10-30 09:03:00,CRM,WARN,2026-10-30 09:03:00 crm-app-06 api: failed to fetch customer 9276 details
+2026-10-30 02:25:00,HRMS,WARN,2026-10-30 02:25:00 hrms-web-01 session: expired for user_id=5831
+2026-10-30 17:11:00,Cloud/Server,ERROR,"2026-10-30 17:11:00 node-01 api: upstream timed out retrieving /v2/orders, host=svc-2"
+2026-10-30 23:03:00,Cloud/Server,INFO,2026-10-30 23:03:00 node-09 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 05:21:00,Cloud/Server,INFO,"2026-10-30 05:21:00 node-04 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 17:29:00,CRM,INFO,"2026-10-30 17:29:00 crm-app-03 db: connection timeout after 23s, req_id=35e4ae"
+2026-10-30 19:09:00,CRM,INFO,2026-10-30 19:09:00 crm-app-04 sync: replication lag detected 3262ms
+2026-10-30 02:40:00,Billing,ERROR,2026-10-30 02:40:00 billing-api-08 invoice: generation failed for invoice 5c8ef4
+2026-10-30 13:35:00,Billing,WARN,"2026-10-30 13:35:00 billing-api-08 payment: transaction declined, card token 6bdd49, amount=$241.32"
+2026-10-30 20:49:00,Billing,WARN,2026-10-30 20:49:00 billing-api-10 charge: retrying for order 169209
+2026-10-30 13:09:00,Cloud/Server,ERROR,2026-10-30 13:09:00 node-06 db: deadlock detected on transaction bbd0a4
+2026-10-30 14:43:00,Cloud/Server,WARN,2026-10-30 14:43:00 node-07 kubelet: pod 1b917d restarted 4 times
+2026-10-30 06:10:00,Cloud/Server,ERROR,"2026-10-30 06:10:00 node-05 api: upstream timed out retrieving /v2/orders, host=svc-1"
+2026-10-30 18:45:00,CRM,ERROR,"2026-10-30 18:45:00 crm-app-08 db: connection timeout after 37s, req_id=1a3c9a"
+2026-10-30 12:13:00,CRM,CRITICAL,2026-10-30 12:13:00 crm-app-02 api: failed to fetch customer 5205 details
+2026-10-30 09:10:00,CRM,ERROR,2026-10-30 09:10:00 crm-app-09 api: failed to fetch customer 6467 details
+2026-10-30 04:54:00,HRMS,WARN,2026-10-30 04:54:00 hrms-web-01 payroll: batch job a567fc failed due to timeout
+2026-10-30 17:42:00,CRM,INFO,2026-10-30 17:42:00 crm-app-05 api: failed to fetch customer 3457 details
+2026-10-30 10:11:00,Billing,ERROR,"2026-10-30 10:11:00 billing-api-06 payment: transaction declined, card token ae3716, amount=$292.14"
+2026-10-30 09:56:00,Cloud/Server,INFO,2026-10-30 09:56:00 node-10 system: disk usage 75% on /var/log
+2026-10-30 17:42:00,Cloud/Server,WARN,2026-10-30 17:42:00 node-04 system: disk usage 79% on /var/log
+2026-10-30 00:11:00,Billing,INFO,2026-10-30 00:11:00 billing-api-07 payment gateway: timeout after 14s
+2026-10-30 01:57:00,CRM,INFO,"2026-10-30 01:57:00 crm-app-07 db: connection timeout after 27s, req_id=52a1d0"
+2026-10-30 04:26:00,Cloud/Server,INFO,2026-10-30 04:26:00 node-08 db: deadlock detected on transaction f827e1
+2026-10-30 06:41:00,HRMS,ERROR,2026-10-30 06:41:00 hrms-web-07 payroll: batch job ffeefc failed due to timeout
+2026-10-30 09:19:00,HRMS,ERROR,2026-10-30 09:19:00 hrms-web-01 employee 7517 profile updated
+2026-10-30 06:28:00,CRM,INFO,2026-10-30 06:28:00 crm-app-06 user 1240 logged in from 192.168.202.158
+2026-10-30 22:15:00,Cloud/Server,INFO,2026-10-30 22:15:00 node-05 db: deadlock detected on transaction 656cd1
+2026-10-30 09:32:00,Cloud/Server,INFO,2026-10-30 09:32:00 node-08 kubelet: pod bc3913 restarted 1 times
+2026-10-30 17:50:00,Billing,ERROR,2026-10-30 17:50:00 billing-api-03 charge: retrying for order b6e69c
+2026-10-30 23:57:00,HRMS,INFO,2026-10-30 23:57:00 hrms-web-04 employee 4253 profile updated
+2026-10-30 06:48:00,CRM,INFO,2026-10-30 06:48:00 crm-app-06 api: failed to fetch customer 6685 details
+2026-10-30 05:32:00,CRM,WARN,2026-10-30 05:32:00 crm-app-07 sync: replication lag detected 543ms
+2026-10-30 23:52:00,Cloud/Server,INFO,2026-10-30 23:52:00 node-09 kubelet: pod 50b0c4 restarted 5 times
+2026-10-30 14:50:00,CRM,INFO,2026-10-30 14:50:00 crm-app-05 api: failed to fetch customer 5163 details
+2026-10-30 09:21:00,Cloud/Server,INFO,2026-10-30 09:21:00 node-04 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 00:05:00,Billing,INFO,2026-10-30 00:05:00 billing-api-09 invoice: generation failed for invoice 829571
+2026-10-30 08:18:00,Billing,INFO,2026-10-30 08:18:00 billing-api-07 payment gateway: timeout after 41s
+2026-10-30 18:17:00,HRMS,WARN,2026-10-30 18:17:00 hrms-web-03 payroll: batch job 98cc2d failed due to timeout
+2026-10-30 05:08:00,Billing,WARN,2026-10-30 05:08:00 billing-api-03 invoice: generation failed for invoice 15adec
+2026-10-30 05:20:00,Cloud/Server,ERROR,2026-10-30 05:20:00 node-07 system: disk usage 71% on /var/log
+2026-10-30 09:37:00,Cloud/Server,WARN,2026-10-30 09:37:00 node-03 system: disk usage 86% on /var/log
+2026-10-30 23:08:00,HRMS,CRITICAL,2026-10-30 23:08:00 hrms-web-07 auth: login failed for user_id=2455 invalid password
+2026-10-30 22:45:00,HRMS,WARN,2026-10-30 22:45:00 hrms-web-07 employee 4995 profile updated
+2026-10-30 09:19:00,Billing,INFO,2026-10-30 09:19:00 billing-api-08 payment gateway: timeout after 23s
+2026-10-30 12:59:00,Billing,WARN,2026-10-30 12:59:00 billing-api-03 invoice: generation failed for invoice 995e7e
+2026-10-30 22:17:00,CRM,ERROR,2026-10-30 22:17:00 crm-app-03 api: failed to fetch customer 3671 details
+2026-10-30 04:09:00,HRMS,ERROR,2026-10-30 04:09:00 hrms-web-02 employee 3117 profile updated
+2026-10-30 05:54:00,Cloud/Server,INFO,2026-10-30 05:54:00 node-07 nginx: 502 Bad Gateway for /api/users
+2026-10-30 14:04:00,CRM,ERROR,2026-10-30 14:04:00 crm-app-07 user 5686 logged in from 192.168.13.202
+2026-10-30 09:21:00,HRMS,ERROR,2026-10-30 09:21:00 hrms-web-04 payroll: batch job 7d1006 failed due to timeout
+2026-10-30 07:09:00,Cloud/Server,WARN,2026-10-30 07:09:00 node-10 system: disk usage 80% on /var/log
+2026-10-30 21:36:00,CRM,INFO,2026-10-30 21:36:00 crm-app-03 user 8487 logged in from 192.168.255.165
+2026-10-30 17:04:00,Cloud/Server,INFO,"2026-10-30 17:04:00 node-07 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 04:46:00,CRM,WARN,"2026-10-30 04:46:00 crm-app-07 db: connection timeout after 35s, req_id=27b758"
+2026-10-30 20:07:00,HRMS,INFO,2026-10-30 20:07:00 hrms-web-07 employee 3060 profile updated
+2026-10-30 02:13:00,HRMS,ERROR,2026-10-30 02:13:00 hrms-web-07 session: expired for user_id=6121
+2026-10-30 22:49:00,Cloud/Server,ERROR,2026-10-30 22:49:00 node-03 db: deadlock detected on transaction faec7d
+2026-10-30 15:24:00,Cloud/Server,WARN,2026-10-30 15:24:00 node-02 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 07:52:00,Cloud/Server,ERROR,"2026-10-30 07:52:00 node-05 api: upstream timed out retrieving /v2/orders, host=svc-1"
+2026-10-30 20:30:00,Cloud/Server,INFO,2026-10-30 20:30:00 node-06 kubelet: pod 257184 restarted 1 times
+2026-10-30 08:41:00,CRM,CRITICAL,2026-10-30 08:41:00 crm-app-02 user 5016 logged in from 192.168.110.78
+2026-10-30 17:49:00,HRMS,WARN,2026-10-30 17:49:00 hrms-web-08 employee 4654 profile updated
+2026-10-30 00:16:00,Cloud/Server,INFO,2026-10-30 00:16:00 node-01 kubelet: pod d2a978 restarted 5 times
+2026-10-30 13:54:00,Cloud/Server,INFO,"2026-10-30 13:54:00 node-07 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 22:07:00,CRM,INFO,2026-10-30 22:07:00 crm-app-07 api: failed to fetch customer 1525 details
+2026-10-30 09:08:00,Cloud/Server,WARN,2026-10-30 09:08:00 node-03 db: deadlock detected on transaction f75420
+2026-10-30 14:35:00,Cloud/Server,ERROR,"2026-10-30 14:35:00 node-07 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 12:26:00,CRM,ERROR,2026-10-30 12:26:00 crm-app-03 sync: replication lag detected 2089ms
+2026-10-30 14:41:00,HRMS,ERROR,2026-10-30 14:41:00 hrms-web-04 auth: login failed for user_id=9228 invalid password
+2026-10-30 19:03:00,CRM,INFO,2026-10-30 19:03:00 crm-app-03 user 9605 logged in from 192.168.48.25
+2026-10-30 19:59:00,CRM,WARN,"2026-10-30 19:59:00 crm-app-09 db: connection timeout after 40s, req_id=d81aa0"
+2026-10-30 06:29:00,HRMS,WARN,2026-10-30 06:29:00 hrms-web-08 auth: login failed for user_id=1946 invalid password
+2026-10-30 00:48:00,Cloud/Server,CRITICAL,"2026-10-30 00:48:00 node-03 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 13:08:00,Cloud/Server,ERROR,2026-10-30 13:08:00 node-09 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 17:18:00,Cloud/Server,ERROR,2026-10-30 17:18:00 node-06 kubelet: pod 552b6d restarted 4 times
+2026-10-30 15:46:00,Billing,WARN,"2026-10-30 15:46:00 billing-api-09 payment: transaction declined, card token 41a840, amount=$442.50"
+2026-10-30 06:22:00,Billing,WARN,2026-10-30 06:22:00 billing-api-07 invoice: generation failed for invoice 951c28
+2026-10-30 05:48:00,HRMS,INFO,2026-10-30 05:48:00 hrms-web-10 auth: login failed for user_id=4568 invalid password
+2026-10-30 13:00:00,CRM,ERROR,2026-10-30 13:00:00 crm-app-05 user 8166 logged in from 192.168.10.161
+2026-10-30 17:40:00,Cloud/Server,INFO,2026-10-30 17:40:00 node-09 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 23:26:00,CRM,WARN,2026-10-30 23:26:00 crm-app-03 sync: replication lag detected 1719ms
+2026-10-30 17:18:00,Billing,WARN,2026-10-30 17:18:00 billing-api-09 charge: retrying for order c664a3
+2026-10-30 04:53:00,CRM,CRITICAL,2026-10-30 04:53:00 crm-app-08 user 6161 logged in from 192.168.51.169
+2026-10-30 03:49:00,CRM,INFO,2026-10-30 03:49:00 crm-app-06 sync: replication lag detected 3268ms
+2026-10-30 21:45:00,Cloud/Server,ERROR,2026-10-30 21:45:00 node-03 db: deadlock detected on transaction 618e10
+2026-10-30 19:53:00,Billing,WARN,"2026-10-30 19:53:00 billing-api-10 payment: transaction declined, card token 00f4ad, amount=$89.91"
+2026-10-30 18:36:00,HRMS,ERROR,2026-10-30 18:36:00 hrms-web-03 employee 4251 profile updated
+2026-10-30 08:33:00,Cloud/Server,WARN,"2026-10-30 08:33:00 node-03 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 13:36:00,Billing,WARN,2026-10-30 13:36:00 billing-api-09 charge: retrying for order 499c0b
+2026-10-30 20:07:00,HRMS,INFO,2026-10-30 20:07:00 hrms-web-04 auth: login failed for user_id=5885 invalid password
+2026-10-30 03:01:00,CRM,INFO,"2026-10-30 03:01:00 crm-app-06 db: connection timeout after 39s, req_id=02daf0"
+2026-10-30 16:38:00,Cloud/Server,INFO,2026-10-30 16:38:00 node-02 system: disk usage 92% on /var/log
+2026-10-30 20:26:00,HRMS,ERROR,2026-10-30 20:26:00 hrms-web-02 auth: login failed for user_id=4914 invalid password
+2026-10-30 06:54:00,Cloud/Server,INFO,"2026-10-30 06:54:00 node-03 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 01:16:00,Billing,INFO,2026-10-30 01:16:00 billing-api-02 payment gateway: timeout after 56s
+2026-10-30 07:45:00,CRM,ERROR,2026-10-30 07:45:00 crm-app-09 sync: replication lag detected 3231ms
+2026-10-30 23:57:00,Cloud/Server,INFO,"2026-10-30 23:57:00 node-02 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 22:17:00,Billing,INFO,2026-10-30 22:17:00 billing-api-03 payment gateway: timeout after 25s
+2026-10-30 16:44:00,HRMS,INFO,2026-10-30 16:44:00 hrms-web-01 session: expired for user_id=6912
+2026-10-30 20:42:00,Cloud/Server,ERROR,"2026-10-30 20:42:00 node-08 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 05:50:00,HRMS,WARN,2026-10-30 05:50:00 hrms-web-08 auth: login failed for user_id=7448 invalid password
+2026-10-30 16:24:00,CRM,WARN,2026-10-30 16:24:00 crm-app-01 sync: replication lag detected 3678ms
+2026-10-30 01:44:00,Cloud/Server,INFO,2026-10-30 01:44:00 node-10 db: deadlock detected on transaction c83fa6
+2026-10-30 11:16:00,Cloud/Server,CRITICAL,2026-10-30 11:16:00 node-10 db: deadlock detected on transaction c98609
+2026-10-30 17:38:00,Billing,ERROR,2026-10-30 17:38:00 billing-api-03 payment gateway: timeout after 43s
+2026-10-30 07:55:00,Cloud/Server,ERROR,2026-10-30 07:55:00 node-02 system: disk usage 88% on /var/log
+2026-10-30 02:25:00,Cloud/Server,WARN,2026-10-30 02:25:00 node-02 kubelet: pod 94e429 restarted 2 times
+2026-10-30 12:53:00,HRMS,INFO,2026-10-30 12:53:00 hrms-web-07 payroll: batch job 13b511 failed due to timeout
+2026-10-30 16:42:00,Cloud/Server,INFO,"2026-10-30 16:42:00 node-10 api: upstream timed out retrieving /v2/orders, host=svc-2"
+2026-10-30 12:59:00,CRM,WARN,2026-10-30 12:59:00 crm-app-06 sync: replication lag detected 1624ms
+2026-10-30 02:18:00,Cloud/Server,WARN,2026-10-30 02:18:00 node-10 db: deadlock detected on transaction 112213
+2026-10-30 02:13:00,HRMS,INFO,2026-10-30 02:13:00 hrms-web-03 auth: login failed for user_id=7313 invalid password
+2026-10-30 20:50:00,CRM,INFO,2026-10-30 20:50:00 crm-app-07 api: failed to fetch customer 9105 details
+2026-10-30 07:42:00,Cloud/Server,INFO,"2026-10-30 07:42:00 node-06 api: upstream timed out retrieving /v2/orders, host=svc-2"
+2026-10-30 11:16:00,CRM,WARN,2026-10-30 11:16:00 crm-app-08 api: failed to fetch customer 9215 details
+2026-10-30 16:44:00,Billing,WARN,2026-10-30 16:44:00 billing-api-01 payment gateway: timeout after 22s
+2026-10-30 08:03:00,Cloud/Server,INFO,2026-10-30 08:03:00 node-03 system: disk usage 72% on /var/log
+2026-10-30 07:27:00,CRM,CRITICAL,2026-10-30 07:27:00 crm-app-04 sync: replication lag detected 1191ms
+2026-10-30 22:20:00,HRMS,WARN,2026-10-30 22:20:00 hrms-web-09 payroll: batch job 6ebd7d failed due to timeout
+2026-10-30 19:48:00,Cloud/Server,WARN,"2026-10-30 19:48:00 node-06 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 22:30:00,Cloud/Server,INFO,2026-10-30 22:30:00 node-02 kubelet: pod 02b822 restarted 5 times
+2026-10-30 19:39:00,Cloud/Server,INFO,2026-10-30 19:39:00 node-08 db: deadlock detected on transaction 403402
+2026-10-30 16:37:00,CRM,WARN,2026-10-30 16:37:00 crm-app-04 sync: replication lag detected 2147ms
+2026-10-30 13:22:00,Billing,INFO,2026-10-30 13:22:00 billing-api-01 charge: retrying for order 15ab17
+2026-10-30 01:36:00,Cloud/Server,WARN,2026-10-30 01:36:00 node-02 db: deadlock detected on transaction 8f615b
+2026-10-30 00:58:00,Cloud/Server,WARN,"2026-10-30 00:58:00 node-09 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 21:16:00,Cloud/Server,INFO,2026-10-30 21:16:00 node-07 system: disk usage 71% on /var/log
+2026-10-30 14:05:00,Billing,CRITICAL,"2026-10-30 14:05:00 billing-api-04 payment: transaction declined, card token a57f80, amount=$266.58"
+2026-10-30 06:21:00,Cloud/Server,INFO,2026-10-30 06:21:00 node-05 kubelet: pod 491244 restarted 5 times
+2026-10-30 18:56:00,CRM,ERROR,2026-10-30 18:56:00 crm-app-10 user 2141 logged in from 192.168.136.143
+2026-10-30 19:28:00,Billing,WARN,2026-10-30 19:28:00 billing-api-06 invoice: generation failed for invoice afaea6
+2026-10-30 05:34:00,Billing,INFO,2026-10-30 05:34:00 billing-api-03 charge: retrying for order 130750
+2026-10-30 16:47:00,Cloud/Server,ERROR,"2026-10-30 16:47:00 node-01 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 08:59:00,HRMS,WARN,2026-10-30 08:59:00 hrms-web-01 payroll: batch job 25d487 failed due to timeout
+2026-10-30 00:25:00,Billing,WARN,"2026-10-30 00:25:00 billing-api-03 payment: transaction declined, card token 008dc9, amount=$236.27"
+2026-10-30 08:46:00,CRM,WARN,2026-10-30 08:46:00 crm-app-01 api: failed to fetch customer 5324 details
+2026-10-30 10:25:00,Cloud/Server,ERROR,2026-10-30 10:25:00 node-05 kubelet: pod 4dc410 restarted 5 times
+2026-10-30 16:04:00,Billing,ERROR,2026-10-30 16:04:00 billing-api-07 charge: retrying for order 6ca62e
+2026-10-30 05:02:00,HRMS,INFO,2026-10-30 05:02:00 hrms-web-03 employee 1939 profile updated
+2026-10-30 23:26:00,Billing,WARN,"2026-10-30 23:26:00 billing-api-07 payment: transaction declined, card token 089f4b, amount=$298.52"
+2026-10-30 11:12:00,Billing,INFO,2026-10-30 11:12:00 billing-api-09 charge: retrying for order 46c3ad
+2026-10-30 15:32:00,Cloud/Server,INFO,"2026-10-30 15:32:00 node-08 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 21:38:00,Cloud/Server,WARN,2026-10-30 21:38:00 node-09 db: deadlock detected on transaction 918785
+2026-10-30 20:25:00,Cloud/Server,INFO,2026-10-30 20:25:00 node-03 kubelet: pod 2002d1 restarted 5 times
+2026-10-30 16:54:00,Cloud/Server,WARN,2026-10-30 16:54:00 node-02 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 10:15:00,Cloud/Server,INFO,2026-10-30 10:15:00 node-09 db: deadlock detected on transaction e26ddc
+2026-10-30 05:40:00,HRMS,INFO,2026-10-30 05:40:00 hrms-web-05 employee 6608 profile updated
+2026-10-30 08:30:00,Cloud/Server,INFO,2026-10-30 08:30:00 node-01 db: deadlock detected on transaction 3b0b13
+2026-10-30 15:42:00,HRMS,ERROR,2026-10-30 15:42:00 hrms-web-01 payroll: batch job 1cebe3 failed due to timeout
+2026-10-30 07:57:00,HRMS,INFO,2026-10-30 07:57:00 hrms-web-09 session: expired for user_id=7130
+2026-10-30 02:32:00,CRM,WARN,2026-10-30 02:32:00 crm-app-05 sync: replication lag detected 3242ms
+2026-10-30 02:13:00,Cloud/Server,ERROR,2026-10-30 02:13:00 node-04 system: disk usage 83% on /var/log
+2026-10-30 14:39:00,Billing,INFO,"2026-10-30 14:39:00 billing-api-10 payment: transaction declined, card token 73cff7, amount=$144.51"
+2026-10-30 16:56:00,CRM,WARN,2026-10-30 16:56:00 crm-app-03 sync: replication lag detected 2204ms
+2026-10-30 13:57:00,Billing,ERROR,2026-10-30 13:57:00 billing-api-01 charge: retrying for order 4fa1a9
+2026-10-30 09:53:00,HRMS,INFO,2026-10-30 09:53:00 hrms-web-08 employee 5762 profile updated
+2026-10-30 01:12:00,Billing,WARN,"2026-10-30 01:12:00 billing-api-05 payment: transaction declined, card token e1d019, amount=$179.42"
+2026-10-30 13:44:00,HRMS,WARN,2026-10-30 13:44:00 hrms-web-08 payroll: batch job ff7b1b failed due to timeout
+2026-10-30 06:48:00,HRMS,WARN,2026-10-30 06:48:00 hrms-web-08 payroll: batch job b0b9e8 failed due to timeout
+2026-10-30 00:14:00,CRM,INFO,2026-10-30 00:14:00 crm-app-05 api: failed to fetch customer 5039 details
+2026-10-30 01:47:00,HRMS,INFO,2026-10-30 01:47:00 hrms-web-02 auth: login failed for user_id=6609 invalid password
+2026-10-30 18:10:00,HRMS,INFO,2026-10-30 18:10:00 hrms-web-10 auth: login failed for user_id=7650 invalid password
+2026-10-30 16:36:00,HRMS,WARN,2026-10-30 16:36:00 hrms-web-01 auth: login failed for user_id=6447 invalid password
+2026-10-30 22:30:00,CRM,WARN,"2026-10-30 22:30:00 crm-app-05 db: connection timeout after 59s, req_id=4b8cdc"
+2026-10-30 21:34:00,CRM,WARN,2026-10-30 21:34:00 crm-app-10 user 9820 logged in from 192.168.47.92
+2026-10-30 04:38:00,CRM,WARN,2026-10-30 04:38:00 crm-app-02 api: failed to fetch customer 8092 details
+2026-10-30 14:30:00,CRM,INFO,2026-10-30 14:30:00 crm-app-01 api: failed to fetch customer 8815 details
+2026-10-30 13:46:00,Billing,WARN,2026-10-30 13:46:00 billing-api-01 invoice: generation failed for invoice d37523
+2026-10-30 08:52:00,HRMS,INFO,2026-10-30 08:52:00 hrms-web-05 session: expired for user_id=9128
+2026-10-30 17:49:00,HRMS,INFO,2026-10-30 17:49:00 hrms-web-09 session: expired for user_id=8603
+2026-10-30 09:10:00,HRMS,ERROR,2026-10-30 09:10:00 hrms-web-05 payroll: batch job 2a02c8 failed due to timeout
+2026-10-30 08:48:00,Cloud/Server,CRITICAL,"2026-10-30 08:48:00 node-02 api: upstream timed out retrieving /v2/orders, host=svc-1"
+2026-10-30 04:22:00,Billing,WARN,2026-10-30 04:22:00 billing-api-08 payment gateway: timeout after 20s
+2026-10-30 19:36:00,Billing,WARN,"2026-10-30 19:36:00 billing-api-05 payment: transaction declined, card token c7cad3, amount=$72.89"
+2026-10-30 10:58:00,Cloud/Server,INFO,2026-10-30 10:58:00 node-06 kubelet: pod ec0cc7 restarted 5 times
+2026-10-30 13:21:00,CRM,WARN,2026-10-30 13:21:00 crm-app-06 sync: replication lag detected 547ms
+2026-10-30 13:21:00,HRMS,WARN,2026-10-30 13:21:00 hrms-web-02 payroll: batch job dc85ac failed due to timeout
+2026-10-30 14:35:00,Billing,CRITICAL,"2026-10-30 14:35:00 billing-api-03 payment: transaction declined, card token e11e51, amount=$287.95"
+2026-10-30 02:14:00,Cloud/Server,INFO,2026-10-30 02:14:00 node-09 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 05:45:00,Billing,WARN,2026-10-30 05:45:00 billing-api-02 payment gateway: timeout after 22s
+2026-10-30 12:54:00,Billing,WARN,"2026-10-30 12:54:00 billing-api-05 payment: transaction declined, card token e46af7, amount=$378.85"
+2026-10-30 00:27:00,CRM,WARN,2026-10-30 00:27:00 crm-app-05 api: failed to fetch customer 4649 details
+2026-10-30 21:36:00,Cloud/Server,INFO,2026-10-30 21:36:00 node-03 system: disk usage 87% on /var/log
+2026-10-30 19:14:00,Cloud/Server,INFO,2026-10-30 19:14:00 node-05 db: deadlock detected on transaction 82a226
+2026-10-30 02:58:00,Billing,INFO,2026-10-30 02:58:00 billing-api-07 invoice: generation failed for invoice af6e88
+2026-10-30 09:53:00,Cloud/Server,ERROR,2026-10-30 09:53:00 node-06 db: deadlock detected on transaction 281589
+2026-10-30 18:27:00,HRMS,INFO,2026-10-30 18:27:00 hrms-web-02 employee 2532 profile updated
+2026-10-30 04:42:00,Cloud/Server,INFO,2026-10-30 04:42:00 node-02 nginx: 502 Bad Gateway for /api/users
+2026-10-30 21:32:00,Cloud/Server,CRITICAL,2026-10-30 21:32:00 node-02 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 03:50:00,Cloud/Server,WARN,2026-10-30 03:50:00 node-01 db: deadlock detected on transaction 550bbb
+2026-10-30 20:13:00,Cloud/Server,INFO,2026-10-30 20:13:00 node-06 kubelet: pod 0dfed2 restarted 3 times
+2026-10-30 19:04:00,HRMS,ERROR,2026-10-30 19:04:00 hrms-web-07 employee 9042 profile updated
+2026-10-30 04:27:00,CRM,WARN,2026-10-30 04:27:00 crm-app-06 sync: replication lag detected 4969ms
+2026-10-30 17:09:00,CRM,ERROR,"2026-10-30 17:09:00 crm-app-07 db: connection timeout after 18s, req_id=ad5c0a"
+2026-10-30 14:45:00,CRM,INFO,2026-10-30 14:45:00 crm-app-03 sync: replication lag detected 1318ms
+2026-10-30 03:44:00,Billing,INFO,2026-10-30 03:44:00 billing-api-06 invoice: generation failed for invoice 3f75cf
+2026-10-30 13:42:00,HRMS,ERROR,2026-10-30 13:42:00 hrms-web-05 auth: login failed for user_id=6372 invalid password
+2026-10-30 15:16:00,CRM,WARN,"2026-10-30 15:16:00 crm-app-08 db: connection timeout after 43s, req_id=fbd905"
+2026-10-30 22:16:00,Cloud/Server,INFO,2026-10-30 22:16:00 node-07 system: disk usage 73% on /var/log
+2026-10-30 16:22:00,HRMS,ERROR,2026-10-30 16:22:00 hrms-web-03 employee 1765 profile updated
+2026-10-30 18:45:00,CRM,ERROR,"2026-10-30 18:45:00 crm-app-02 db: connection timeout after 17s, req_id=cc5c7d"
+2026-10-30 10:50:00,HRMS,ERROR,2026-10-30 10:50:00 hrms-web-01 auth: login failed for user_id=8957 invalid password
+2026-10-30 22:51:00,Cloud/Server,ERROR,2026-10-30 22:51:00 node-09 db: deadlock detected on transaction 053182
+2026-10-30 13:59:00,HRMS,WARN,2026-10-30 13:59:00 hrms-web-06 employee 2265 profile updated
+2026-10-30 02:31:00,Billing,INFO,2026-10-30 02:31:00 billing-api-08 charge: retrying for order 061c4f
+2026-10-30 13:52:00,CRM,WARN,2026-10-30 13:52:00 crm-app-07 sync: replication lag detected 808ms
+2026-10-30 16:46:00,CRM,INFO,2026-10-30 16:46:00 crm-app-06 user 5979 logged in from 192.168.72.24
+2026-10-30 10:36:00,Billing,ERROR,2026-10-30 10:36:00 billing-api-04 invoice: generation failed for invoice 1c731e
+2026-10-30 21:58:00,HRMS,INFO,2026-10-30 21:58:00 hrms-web-09 auth: login failed for user_id=1902 invalid password
+2026-10-30 12:46:00,CRM,INFO,2026-10-30 12:46:00 crm-app-01 user 4248 logged in from 192.168.246.87
+2026-10-30 18:28:00,Billing,WARN,2026-10-30 18:28:00 billing-api-03 invoice: generation failed for invoice b57e04
+2026-10-30 07:28:00,Cloud/Server,ERROR,2026-10-30 07:28:00 node-03 db: deadlock detected on transaction 0c08a7
+2026-10-30 19:40:00,Billing,WARN,"2026-10-30 19:40:00 billing-api-06 payment: transaction declined, card token 6c564d, amount=$493.37"
+2026-10-30 14:30:00,Billing,WARN,2026-10-30 14:30:00 billing-api-07 charge: retrying for order 4decab
+2026-10-30 23:59:00,Cloud/Server,INFO,2026-10-30 23:59:00 node-04 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 10:46:00,Cloud/Server,ERROR,2026-10-30 10:46:00 node-06 db: deadlock detected on transaction 261d0d
+2026-10-30 20:07:00,HRMS,WARN,2026-10-30 20:07:00 hrms-web-07 session: expired for user_id=2690
+2026-10-30 21:39:00,CRM,WARN,"2026-10-30 21:39:00 crm-app-07 db: connection timeout after 58s, req_id=f1068f"
+2026-10-30 17:46:00,Cloud/Server,INFO,2026-10-30 17:46:00 node-05 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 01:03:00,Cloud/Server,WARN,"2026-10-30 01:03:00 node-05 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 03:49:00,Cloud/Server,WARN,2026-10-30 03:49:00 node-01 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 00:26:00,CRM,WARN,2026-10-30 00:26:00 crm-app-09 api: failed to fetch customer 7180 details
+2026-10-30 11:58:00,CRM,INFO,2026-10-30 11:58:00 crm-app-02 sync: replication lag detected 2795ms
+2026-10-30 08:05:00,Billing,INFO,2026-10-30 08:05:00 billing-api-05 charge: retrying for order 37f743
+2026-10-30 20:28:00,Cloud/Server,WARN,2026-10-30 20:28:00 node-08 db: deadlock detected on transaction 948bf6
+2026-10-30 18:38:00,Billing,WARN,2026-10-30 18:38:00 billing-api-10 payment gateway: timeout after 13s
+2026-10-30 09:20:00,Cloud/Server,INFO,2026-10-30 09:20:00 node-07 system: disk usage 94% on /var/log
+2026-10-30 12:44:00,HRMS,WARN,2026-10-30 12:44:00 hrms-web-08 payroll: batch job 4c35db failed due to timeout
+2026-10-30 12:33:00,HRMS,WARN,2026-10-30 12:33:00 hrms-web-01 employee 4126 profile updated
+2026-10-30 09:42:00,Billing,ERROR,2026-10-30 09:42:00 billing-api-03 charge: retrying for order 9e62bc
+2026-10-30 09:04:00,Cloud/Server,WARN,2026-10-30 09:04:00 node-01 kubelet: pod ad57a4 restarted 1 times
+2026-10-30 06:17:00,HRMS,INFO,2026-10-30 06:17:00 hrms-web-03 employee 3237 profile updated
+2026-10-30 12:35:00,HRMS,INFO,2026-10-30 12:35:00 hrms-web-06 employee 6723 profile updated
+2026-10-30 00:06:00,Cloud/Server,INFO,2026-10-30 00:06:00 node-10 db: deadlock detected on transaction d42cec
+2026-10-30 04:38:00,Cloud/Server,INFO,"2026-10-30 04:38:00 node-04 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 01:02:00,CRM,INFO,"2026-10-30 01:02:00 crm-app-05 db: connection timeout after 23s, req_id=35b05c"
+2026-10-30 22:45:00,CRM,WARN,"2026-10-30 22:45:00 crm-app-06 db: connection timeout after 41s, req_id=c109fa"
+2026-10-30 11:14:00,Cloud/Server,WARN,2026-10-30 11:14:00 node-04 db: deadlock detected on transaction a2b737
+2026-10-30 09:35:00,Cloud/Server,WARN,2026-10-30 09:35:00 node-04 kubelet: pod 49da6f restarted 3 times
+2026-10-30 11:16:00,CRM,WARN,2026-10-30 11:16:00 crm-app-07 sync: replication lag detected 1597ms
+2026-10-30 23:09:00,Cloud/Server,INFO,2026-10-30 23:09:00 node-02 system: disk usage 89% on /var/log
+2026-10-30 16:04:00,CRM,INFO,2026-10-30 16:04:00 crm-app-01 api: failed to fetch customer 9774 details
+2026-10-30 03:17:00,CRM,INFO,2026-10-30 03:17:00 crm-app-02 user 8655 logged in from 192.168.179.36
+2026-10-30 00:27:00,CRM,WARN,2026-10-30 00:27:00 crm-app-06 user 1298 logged in from 192.168.91.7
+2026-10-30 04:07:00,Billing,WARN,2026-10-30 04:07:00 billing-api-10 payment gateway: timeout after 34s
+2026-10-30 23:09:00,CRM,INFO,2026-10-30 23:09:00 crm-app-08 user 5913 logged in from 192.168.85.206
+2026-10-30 13:45:00,CRM,ERROR,2026-10-30 13:45:00 crm-app-06 user 5992 logged in from 192.168.49.111
+2026-10-30 07:53:00,Billing,ERROR,2026-10-30 07:53:00 billing-api-05 payment gateway: timeout after 26s
+2026-10-30 03:41:00,Cloud/Server,INFO,2026-10-30 03:41:00 node-01 system: disk usage 92% on /var/log
+2026-10-30 21:33:00,Cloud/Server,WARN,2026-10-30 21:33:00 node-06 system: disk usage 78% on /var/log
+2026-10-30 14:30:00,Cloud/Server,WARN,2026-10-30 14:30:00 node-03 db: deadlock detected on transaction fb3f4d
+2026-10-30 07:11:00,Billing,INFO,2026-10-30 07:11:00 billing-api-10 payment gateway: timeout after 25s
+2026-10-30 11:06:00,HRMS,WARN,2026-10-30 11:06:00 hrms-web-09 session: expired for user_id=3115
+2026-10-30 06:09:00,CRM,WARN,2026-10-30 06:09:00 crm-app-04 api: failed to fetch customer 1267 details
+2026-10-30 05:20:00,CRM,INFO,2026-10-30 05:20:00 crm-app-03 api: failed to fetch customer 6451 details
+2026-10-30 13:43:00,Cloud/Server,INFO,"2026-10-30 13:43:00 node-09 api: upstream timed out retrieving /v2/orders, host=svc-1"
+2026-10-30 11:33:00,Cloud/Server,CRITICAL,2026-10-30 11:33:00 node-09 system: disk usage 80% on /var/log
+2026-10-30 14:28:00,Cloud/Server,WARN,"2026-10-30 14:28:00 node-06 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 03:02:00,Cloud/Server,ERROR,2026-10-30 03:02:00 node-07 db: deadlock detected on transaction 267cd0
+2026-10-30 09:16:00,Billing,INFO,2026-10-30 09:16:00 billing-api-01 invoice: generation failed for invoice 0d2247
+2026-10-30 05:56:00,Billing,ERROR,2026-10-30 05:56:00 billing-api-10 invoice: generation failed for invoice a6a0b7
+2026-10-30 08:19:00,HRMS,ERROR,2026-10-30 08:19:00 hrms-web-08 employee 2338 profile updated
+2026-10-30 03:50:00,HRMS,ERROR,2026-10-30 03:50:00 hrms-web-02 auth: login failed for user_id=3622 invalid password
+2026-10-30 11:55:00,HRMS,ERROR,2026-10-30 11:55:00 hrms-web-04 payroll: batch job 64e338 failed due to timeout
+2026-10-30 05:57:00,Billing,INFO,2026-10-30 05:57:00 billing-api-03 charge: retrying for order 86e695
+2026-10-30 16:03:00,HRMS,INFO,2026-10-30 16:03:00 hrms-web-04 employee 6894 profile updated
+2026-10-30 15:04:00,Billing,INFO,2026-10-30 15:04:00 billing-api-02 invoice: generation failed for invoice ddcccf
+2026-10-30 09:29:00,HRMS,INFO,2026-10-30 09:29:00 hrms-web-10 session: expired for user_id=4890
+2026-10-30 05:01:00,Cloud/Server,WARN,2026-10-30 05:01:00 node-01 system: disk usage 75% on /var/log
+2026-10-30 22:37:00,Cloud/Server,ERROR,2026-10-30 22:37:00 node-08 kubelet: pod 83ad48 restarted 4 times
+2026-10-30 06:44:00,Billing,INFO,2026-10-30 06:44:00 billing-api-05 charge: retrying for order d5dcc6
+2026-10-30 01:05:00,Cloud/Server,WARN,2026-10-30 01:05:00 node-03 system: disk usage 76% on /var/log
+2026-10-30 09:22:00,Cloud/Server,INFO,"2026-10-30 09:22:00 node-03 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 00:44:00,CRM,INFO,2026-10-30 00:44:00 crm-app-03 user 2338 logged in from 192.168.75.115
+2026-10-30 00:18:00,Cloud/Server,INFO,2026-10-30 00:18:00 node-03 kubelet: pod 34f471 restarted 3 times
+2026-10-30 10:54:00,CRM,WARN,2026-10-30 10:54:00 crm-app-01 api: failed to fetch customer 5778 details
+2026-10-30 11:09:00,Billing,INFO,2026-10-30 11:09:00 billing-api-07 payment gateway: timeout after 51s
+2026-10-30 12:41:00,Billing,INFO,2026-10-30 12:41:00 billing-api-05 charge: retrying for order 129119
+2026-10-30 05:27:00,Cloud/Server,WARN,"2026-10-30 05:27:00 node-10 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 15:27:00,Cloud/Server,ERROR,2026-10-30 15:27:00 node-07 kubelet: pod 5911e2 restarted 5 times
+2026-10-30 14:52:00,Cloud/Server,WARN,"2026-10-30 14:52:00 node-04 api: upstream timed out retrieving /v2/orders, host=svc-2"
+2026-10-30 02:21:00,Billing,ERROR,2026-10-30 02:21:00 billing-api-04 payment gateway: timeout after 13s
+2026-10-30 07:58:00,Billing,INFO,"2026-10-30 07:58:00 billing-api-05 payment: transaction declined, card token 61b9c3, amount=$226.86"
+2026-10-30 00:30:00,CRM,ERROR,2026-10-30 00:30:00 crm-app-05 user 1655 logged in from 192.168.172.7
+2026-10-30 16:59:00,Billing,INFO,2026-10-30 16:59:00 billing-api-07 charge: retrying for order e80e01
+2026-10-30 16:58:00,Cloud/Server,INFO,2026-10-30 16:58:00 node-03 kubelet: pod a2d83a restarted 1 times
+2026-10-30 21:13:00,HRMS,WARN,2026-10-30 21:13:00 hrms-web-04 auth: login failed for user_id=5787 invalid password
+2026-10-30 20:40:00,CRM,WARN,2026-10-30 20:40:00 crm-app-06 api: failed to fetch customer 5979 details
+2026-10-30 19:22:00,CRM,INFO,2026-10-30 19:22:00 crm-app-08 user 3604 logged in from 192.168.22.205
+2026-10-30 11:17:00,HRMS,ERROR,2026-10-30 11:17:00 hrms-web-03 session: expired for user_id=7628
+2026-10-30 06:19:00,Billing,WARN,2026-10-30 06:19:00 billing-api-02 payment gateway: timeout after 23s
+2026-10-30 20:07:00,Billing,WARN,"2026-10-30 20:07:00 billing-api-09 payment: transaction declined, card token 41f324, amount=$108.37"
+2026-10-30 01:01:00,CRM,WARN,2026-10-30 01:01:00 crm-app-07 sync: replication lag detected 1108ms
+2026-10-30 10:24:00,HRMS,WARN,2026-10-30 10:24:00 hrms-web-02 payroll: batch job 15c976 failed due to timeout
+2026-10-30 00:19:00,CRM,ERROR,2026-10-30 00:19:00 crm-app-01 sync: replication lag detected 2559ms
+2026-10-30 11:15:00,HRMS,INFO,2026-10-30 11:15:00 hrms-web-04 session: expired for user_id=4416
+2026-10-30 16:01:00,Billing,INFO,2026-10-30 16:01:00 billing-api-05 charge: retrying for order 957261
+2026-10-30 09:01:00,CRM,WARN,"2026-10-30 09:01:00 crm-app-01 db: connection timeout after 29s, req_id=406f13"
+2026-10-30 16:03:00,Cloud/Server,WARN,2026-10-30 16:03:00 node-09 nginx: 502 Bad Gateway for /api/users
+2026-10-30 13:59:00,HRMS,WARN,2026-10-30 13:59:00 hrms-web-09 auth: login failed for user_id=4897 invalid password
+2026-10-30 08:01:00,Cloud/Server,ERROR,2026-10-30 08:01:00 node-04 system: disk usage 91% on /var/log
+2026-10-30 02:39:00,CRM,INFO,2026-10-30 02:39:00 crm-app-10 sync: replication lag detected 1518ms
+2026-10-30 01:55:00,Cloud/Server,INFO,2026-10-30 01:55:00 node-07 kubelet: pod 1235a1 restarted 2 times
+2026-10-30 21:46:00,CRM,INFO,2026-10-30 21:46:00 crm-app-02 user 4467 logged in from 192.168.234.14
+2026-10-30 00:22:00,CRM,WARN,"2026-10-30 00:22:00 crm-app-07 db: connection timeout after 27s, req_id=7d4b8a"
+2026-10-30 01:20:00,HRMS,INFO,2026-10-30 01:20:00 hrms-web-03 payroll: batch job 7e7a1a failed due to timeout
+2026-10-30 20:05:00,Billing,INFO,2026-10-30 20:05:00 billing-api-02 charge: retrying for order 80263d
+2026-10-30 13:45:00,Cloud/Server,ERROR,2026-10-30 13:45:00 node-05 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 20:03:00,Billing,INFO,"2026-10-30 20:03:00 billing-api-08 payment: transaction declined, card token 8809ae, amount=$271.79"
+2026-10-30 14:15:00,Cloud/Server,INFO,"2026-10-30 14:15:00 node-06 api: upstream timed out retrieving /v2/orders, host=svc-2"
+2026-10-30 05:02:00,Billing,WARN,2026-10-30 05:02:00 billing-api-05 invoice: generation failed for invoice 04df53
+2026-10-30 08:35:00,CRM,INFO,2026-10-30 08:35:00 crm-app-02 user 1557 logged in from 192.168.88.171
+2026-10-30 02:28:00,CRM,INFO,2026-10-30 02:28:00 crm-app-02 user 3911 logged in from 192.168.61.54
+2026-10-30 20:06:00,CRM,INFO,2026-10-30 20:06:00 crm-app-10 sync: replication lag detected 4154ms
+2026-10-30 19:30:00,CRM,ERROR,2026-10-30 19:30:00 crm-app-03 user 6423 logged in from 192.168.121.90
+2026-10-30 23:03:00,Cloud/Server,INFO,2026-10-30 23:03:00 node-02 nginx: 502 Bad Gateway for /api/users
+2026-10-30 03:18:00,Cloud/Server,INFO,2026-10-30 03:18:00 node-08 db: deadlock detected on transaction 9770c4
+2026-10-30 19:34:00,CRM,WARN,2026-10-30 19:34:00 crm-app-02 user 8583 logged in from 192.168.85.91
+2026-10-30 20:07:00,HRMS,INFO,2026-10-30 20:07:00 hrms-web-04 employee 7725 profile updated
+2026-10-30 14:39:00,Billing,WARN,"2026-10-30 14:39:00 billing-api-05 payment: transaction declined, card token cc2afd, amount=$106.50"
+2026-10-30 04:55:00,Billing,INFO,2026-10-30 04:55:00 billing-api-04 charge: retrying for order 0d4c13
+2026-10-30 02:49:00,Cloud/Server,INFO,2026-10-30 02:49:00 node-02 system: disk usage 91% on /var/log
+2026-10-30 06:12:00,Billing,ERROR,2026-10-30 06:12:00 billing-api-09 payment gateway: timeout after 22s
+2026-10-30 02:52:00,CRM,INFO,2026-10-30 02:52:00 crm-app-03 api: failed to fetch customer 7968 details
+2026-10-30 01:01:00,Billing,ERROR,"2026-10-30 01:01:00 billing-api-10 payment: transaction declined, card token e4cb24, amount=$300.28"
+2026-10-30 02:14:00,HRMS,WARN,2026-10-30 02:14:00 hrms-web-07 session: expired for user_id=8714
+2026-10-30 05:46:00,HRMS,CRITICAL,2026-10-30 05:46:00 hrms-web-04 payroll: batch job d2bc18 failed due to timeout
+2026-10-30 04:27:00,Cloud/Server,ERROR,2026-10-30 04:27:00 node-01 db: deadlock detected on transaction f66b67
+2026-10-30 13:22:00,Cloud/Server,INFO,2026-10-30 13:22:00 node-05 system: disk usage 70% on /var/log
+2026-10-30 11:26:00,Cloud/Server,ERROR,"2026-10-30 11:26:00 node-02 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 04:12:00,Billing,INFO,"2026-10-30 04:12:00 billing-api-09 payment: transaction declined, card token b85bfe, amount=$333.83"
+2026-10-30 19:30:00,HRMS,ERROR,2026-10-30 19:30:00 hrms-web-06 auth: login failed for user_id=9132 invalid password
+2026-10-30 19:12:00,CRM,ERROR,2026-10-30 19:12:00 crm-app-01 api: failed to fetch customer 1236 details
+2026-10-30 05:05:00,Cloud/Server,CRITICAL,2026-10-30 05:05:00 node-10 system: disk usage 75% on /var/log
+2026-10-30 06:43:00,CRM,WARN,"2026-10-30 06:43:00 crm-app-07 db: connection timeout after 58s, req_id=73fbd1"
+2026-10-30 03:43:00,CRM,WARN,2026-10-30 03:43:00 crm-app-06 api: failed to fetch customer 3159 details
+2026-10-30 03:32:00,Cloud/Server,ERROR,"2026-10-30 03:32:00 node-08 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 08:42:00,Cloud/Server,ERROR,2026-10-30 08:42:00 node-10 kubelet: pod e234a7 restarted 2 times
+2026-10-30 13:13:00,Cloud/Server,INFO,"2026-10-30 13:13:00 node-07 api: upstream timed out retrieving /v2/orders, host=svc-2"
+2026-10-30 14:33:00,HRMS,INFO,2026-10-30 14:33:00 hrms-web-07 auth: login failed for user_id=1973 invalid password
+2026-10-30 10:03:00,Cloud/Server,WARN,2026-10-30 10:03:00 node-02 kubelet: pod 1964e0 restarted 5 times
+2026-10-30 21:45:00,HRMS,WARN,2026-10-30 21:45:00 hrms-web-03 payroll: batch job 8f0f54 failed due to timeout
+2026-10-30 01:33:00,Cloud/Server,INFO,"2026-10-30 01:33:00 node-04 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 13:10:00,HRMS,WARN,2026-10-30 13:10:00 hrms-web-05 auth: login failed for user_id=5380 invalid password
+2026-10-30 10:54:00,Cloud/Server,INFO,2026-10-30 10:54:00 node-01 db: deadlock detected on transaction e7fdd0
+2026-10-30 13:03:00,Cloud/Server,WARN,2026-10-30 13:03:00 node-05 system: disk usage 75% on /var/log
+2026-10-30 00:07:00,CRM,CRITICAL,2026-10-30 00:07:00 crm-app-05 api: failed to fetch customer 7003 details
+2026-10-30 09:10:00,Billing,CRITICAL,2026-10-30 09:10:00 billing-api-10 payment gateway: timeout after 33s
+2026-10-30 19:06:00,Cloud/Server,INFO,2026-10-30 19:06:00 node-07 db: deadlock detected on transaction 60dc03
+2026-10-30 05:55:00,HRMS,INFO,2026-10-30 05:55:00 hrms-web-07 session: expired for user_id=7303
+2026-10-30 00:35:00,Billing,INFO,2026-10-30 00:35:00 billing-api-10 charge: retrying for order e9bc22
+2026-10-30 12:13:00,Cloud/Server,WARN,2026-10-30 12:13:00 node-02 kubelet: pod c32429 restarted 2 times
+2026-10-30 09:19:00,CRM,INFO,2026-10-30 09:19:00 crm-app-08 sync: replication lag detected 516ms
+2026-10-30 07:35:00,CRM,INFO,2026-10-30 07:35:00 crm-app-06 sync: replication lag detected 3717ms
+2026-10-30 02:26:00,HRMS,INFO,2026-10-30 02:26:00 hrms-web-09 session: expired for user_id=9513
+2026-10-30 14:08:00,Billing,INFO,"2026-10-30 14:08:00 billing-api-01 payment: transaction declined, card token 061802, amount=$413.58"
+2026-10-30 10:09:00,CRM,INFO,"2026-10-30 10:09:00 crm-app-07 db: connection timeout after 48s, req_id=f01ec6"
+2026-10-30 04:33:00,Cloud/Server,WARN,2026-10-30 04:33:00 node-06 system: disk usage 78% on /var/log
+2026-10-30 20:17:00,Cloud/Server,INFO,2026-10-30 20:17:00 node-04 kubelet: pod 1ffca6 restarted 5 times
+2026-10-30 23:04:00,Cloud/Server,INFO,"2026-10-30 23:04:00 node-02 api: upstream timed out retrieving /v2/orders, host=svc-1"
+2026-10-30 12:17:00,Billing,ERROR,2026-10-30 12:17:00 billing-api-03 invoice: generation failed for invoice 398fe6
+2026-10-30 02:59:00,Billing,WARN,2026-10-30 02:59:00 billing-api-09 invoice: generation failed for invoice 8d2b84
+2026-10-30 08:56:00,CRM,ERROR,"2026-10-30 08:56:00 crm-app-05 db: connection timeout after 45s, req_id=334945"
+2026-10-30 19:59:00,CRM,ERROR,2026-10-30 19:59:00 crm-app-05 sync: replication lag detected 2609ms
+2026-10-30 09:47:00,CRM,WARN,2026-10-30 09:47:00 crm-app-05 sync: replication lag detected 3938ms
+2026-10-30 06:32:00,Cloud/Server,INFO,2026-10-30 06:32:00 node-05 system: disk usage 85% on /var/log
+2026-10-30 17:23:00,Cloud/Server,WARN,2026-10-30 17:23:00 node-06 system: disk usage 72% on /var/log
+2026-10-30 13:16:00,Cloud/Server,WARN,2026-10-30 13:16:00 node-10 system: disk usage 72% on /var/log
+2026-10-30 17:29:00,Cloud/Server,WARN,"2026-10-30 17:29:00 node-04 api: upstream timed out retrieving /v2/orders, host=svc-2"
+2026-10-30 09:12:00,HRMS,WARN,2026-10-30 09:12:00 hrms-web-07 employee 6543 profile updated
+2026-10-30 19:35:00,Cloud/Server,INFO,2026-10-30 19:35:00 node-01 nginx: 502 Bad Gateway for /api/users
+2026-10-30 16:16:00,Billing,WARN,2026-10-30 16:16:00 billing-api-10 payment gateway: timeout after 41s
+2026-10-30 00:55:00,Cloud/Server,INFO,"2026-10-30 00:55:00 node-03 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 13:44:00,HRMS,WARN,2026-10-30 13:44:00 hrms-web-01 session: expired for user_id=2506
+2026-10-30 06:07:00,Billing,WARN,2026-10-30 06:07:00 billing-api-10 charge: retrying for order ed280d
+2026-10-30 12:16:00,Billing,INFO,2026-10-30 12:16:00 billing-api-05 charge: retrying for order 177d03
+2026-10-30 16:23:00,Billing,INFO,2026-10-30 16:23:00 billing-api-05 payment gateway: timeout after 28s
+2026-10-30 13:43:00,CRM,ERROR,"2026-10-30 13:43:00 crm-app-06 db: connection timeout after 34s, req_id=bcf3f0"
+2026-10-30 02:23:00,CRM,INFO,"2026-10-30 02:23:00 crm-app-02 db: connection timeout after 37s, req_id=b078fd"
+2026-10-30 17:23:00,Cloud/Server,INFO,2026-10-30 17:23:00 node-08 kubelet: pod 091f5c restarted 2 times
+2026-10-30 02:04:00,Cloud/Server,INFO,2026-10-30 02:04:00 node-04 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 01:34:00,Cloud/Server,ERROR,2026-10-30 01:34:00 node-03 db: deadlock detected on transaction 9d4e4d
+2026-10-30 01:14:00,Cloud/Server,WARN,2026-10-30 01:14:00 node-09 kubelet: pod bf24b6 restarted 4 times
+2026-10-30 16:04:00,CRM,ERROR,2026-10-30 16:04:00 crm-app-08 api: failed to fetch customer 3584 details
+2026-10-30 01:10:00,Cloud/Server,INFO,2026-10-30 01:10:00 node-10 kubelet: pod b953a8 restarted 1 times
+2026-10-30 02:42:00,HRMS,INFO,2026-10-30 02:42:00 hrms-web-08 employee 8362 profile updated
+2026-10-30 13:02:00,Billing,INFO,2026-10-30 13:02:00 billing-api-03 invoice: generation failed for invoice 27badf
+2026-10-30 22:07:00,Cloud/Server,WARN,2026-10-30 22:07:00 node-05 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 20:31:00,Cloud/Server,INFO,2026-10-30 20:31:00 node-02 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 07:31:00,Cloud/Server,WARN,2026-10-30 07:31:00 node-05 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 10:33:00,Billing,ERROR,"2026-10-30 10:33:00 billing-api-04 payment: transaction declined, card token 34d3ae, amount=$47.95"
+2026-10-30 09:42:00,Cloud/Server,WARN,"2026-10-30 09:42:00 node-08 api: upstream timed out retrieving /v2/orders, host=svc-1"
+2026-10-30 00:40:00,Cloud/Server,ERROR,"2026-10-30 00:40:00 node-10 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 17:12:00,CRM,WARN,2026-10-30 17:12:00 crm-app-01 api: failed to fetch customer 7115 details
+2026-10-30 19:17:00,HRMS,ERROR,2026-10-30 19:17:00 hrms-web-04 payroll: batch job f9b8b1 failed due to timeout
+2026-10-30 02:49:00,Billing,WARN,"2026-10-30 02:49:00 billing-api-09 payment: transaction declined, card token c05edf, amount=$147.41"
+2026-10-30 11:30:00,CRM,INFO,"2026-10-30 11:30:00 crm-app-09 db: connection timeout after 48s, req_id=45899c"
+2026-10-30 23:16:00,Cloud/Server,INFO,"2026-10-30 23:16:00 node-07 api: upstream timed out retrieving /v2/orders, host=svc-4"
+2026-10-30 15:17:00,Cloud/Server,INFO,2026-10-30 15:17:00 node-01 system: disk usage 72% on /var/log
+2026-10-30 23:41:00,Cloud/Server,INFO,2026-10-30 23:41:00 node-06 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 01:32:00,Cloud/Server,WARN,2026-10-30 01:32:00 node-07 db: deadlock detected on transaction 6f6948
+2026-10-30 02:29:00,Cloud/Server,WARN,"2026-10-30 02:29:00 node-09 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 13:02:00,Cloud/Server,INFO,2026-10-30 13:02:00 node-05 system: disk usage 79% on /var/log
+2026-10-30 08:57:00,Billing,INFO,2026-10-30 08:57:00 billing-api-04 invoice: generation failed for invoice 7248d2
+2026-10-30 12:31:00,Cloud/Server,ERROR,2026-10-30 12:31:00 node-09 system: disk usage 73% on /var/log
+2026-10-30 20:53:00,Cloud/Server,ERROR,2026-10-30 20:53:00 node-07 db: deadlock detected on transaction d5fb07
+2026-10-30 03:51:00,Cloud/Server,WARN,2026-10-30 03:51:00 node-06 kubelet: pod b4a8ae restarted 4 times
+2026-10-30 14:44:00,HRMS,WARN,2026-10-30 14:44:00 hrms-web-08 session: expired for user_id=6937
+2026-10-30 14:22:00,Cloud/Server,INFO,2026-10-30 14:22:00 node-09 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 19:02:00,Cloud/Server,INFO,2026-10-30 19:02:00 node-03 db: deadlock detected on transaction 3b237f
+2026-10-30 05:58:00,Cloud/Server,INFO,2026-10-30 05:58:00 node-08 kubelet: pod 2095b6 restarted 5 times
+2026-10-30 09:24:00,HRMS,WARN,2026-10-30 09:24:00 hrms-web-07 auth: login failed for user_id=2847 invalid password
+2026-10-30 00:37:00,Cloud/Server,INFO,2026-10-30 00:37:00 node-09 nginx: 502 Bad Gateway for /api/payments
+2026-10-30 13:56:00,Cloud/Server,CRITICAL,2026-10-30 13:56:00 node-07 db: deadlock detected on transaction 7db7e3
+2026-10-30 03:27:00,Cloud/Server,WARN,2026-10-30 03:27:00 node-10 nginx: 502 Bad Gateway for /api/orders
+2026-10-30 07:20:00,Cloud/Server,ERROR,"2026-10-30 07:20:00 node-06 api: upstream timed out retrieving /v2/orders, host=svc-1"
+2026-10-30 21:00:00,CRM,WARN,"2026-10-30 21:00:00 crm-app-07 db: connection timeout after 60s, req_id=50b6b9"
+2026-10-30 14:03:00,Cloud/Server,INFO,"2026-10-30 14:03:00 node-06 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 17:32:00,Cloud/Server,ERROR,2026-10-30 17:32:00 node-09 kubelet: pod d00f20 restarted 1 times
+2026-10-30 18:50:00,CRM,WARN,2026-10-30 18:50:00 crm-app-10 user 8487 logged in from 192.168.47.20
+2026-10-30 04:57:00,Cloud/Server,INFO,2026-10-30 04:57:00 node-06 kubelet: pod d3dd8c restarted 5 times
+2026-10-30 06:13:00,Cloud/Server,WARN,2026-10-30 06:13:00 node-09 kubelet: pod 1fb4b2 restarted 2 times
+2026-10-30 12:15:00,Cloud/Server,ERROR,"2026-10-30 12:15:00 node-08 api: upstream timed out retrieving /v2/orders, host=svc-5"
+2026-10-30 09:13:00,Billing,INFO,2026-10-30 09:13:00 billing-api-05 charge: retrying for order ee6556
+2026-10-30 22:59:00,Cloud/Server,WARN,2026-10-30 22:59:00 node-07 db: deadlock detected on transaction 3e3ce2
+2026-10-30 12:59:00,Billing,WARN,"2026-10-30 12:59:00 billing-api-07 payment: transaction declined, card token 58f7ee, amount=$371.86"
+2026-10-30 15:00:00,Cloud/Server,INFO,"2026-10-30 15:00:00 node-01 api: upstream timed out retrieving /v2/orders, host=svc-3"
+2026-10-30 22:00:00,HRMS,INFO,2026-10-30 22:00:00 hrms-web-10 session: expired for user_id=2735
