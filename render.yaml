@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: smartlog-ai-backend
+    runtime: python
+    repo: https://github.com/Suhani3456/SmartLog-AI---Final
+    branch: main
+    rootDir: backend
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./smartlog.db
