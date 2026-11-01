@@ -305,3 +305,129 @@ frontend: npm install && npm run dev
   endpoint OK, health/models loaded OK.
 - Phase 5 — pending. Phase 6 — pending. Phase 7 — pending.
   Phase 8 — pending. Phase 9 — pending.
+
+## readmephase3.md (Dashboard zero state + web scrape) — in progress
+- **Phase 0 — DONE (explore only, no edits).** Read `frontend/src/lib/api.ts`,
+  `frontend/src/hooks/useApi.ts` (the hooks file; there is no use-smartlog.ts),
+  `frontend/src/pages/Dashboard.tsx`, `frontend/src/pages/Upload.tsx`,
+  `frontend/src/lib/mock.ts`, `backend/main.py`, `backend/seed.py`,
+  `backend/config.py`, and routers `upload.py` / `incidents.py` (dashboard stats
+  + timeseries live here) / `stream.py` / `anomalies.py` / `metrics.py`.
+  Findings: (a) synthetic/mock paths to Dashboard — `seed.py` (~300 rows, doc'd
+  as a startup step but run manually; existing smartlog.db still holds its rows),
+  `stream.py` synthetic generator replaying `sample_logs.csv` into DB + WS,
+  `demo` stub clusters in `anomalies.py` (hardcoded deterministic points),
+  mock.ts store (23 canned incidents, fabricated stats 18342/47, upload that
+  fakes done without adding records). (b) upload ingest path — `_read_lines` →
+  413/422 guards → `UploadedFile` row → background `_process_upload` → per line
+  `_guess_source` + level heuristic + `pipeline_orchestrator.classify_text` →
+  IncidentRow insert; dashboard fills from DB via /api/dashboard/stats,
+  /api/incidents, /api/incidents/timeseries; the upload poller invalidates only
+  `incidents` + `stats` queries (missing `timeseries`). (c) Shared ingest plan —
+  add `services.ingest_lines(lines, label)` holding the classify+insert+progress
+  logic; /api/upload and /api/scrape both call it; WS broadcast via a connection
+  registry so ingest pushes ≤50 newest events (Phase 2). Zero state also needs
+  `anomalies.py` to return empty clusters from DB on a fresh DB.
+- **Phase 1 — DONE.** Zero state. Changed: `backend/routers/stream.py`
+  (synthetic generator removed; WS only sends the hello frame and then
+  nothing — verified with a websockets client), `backend/seed.py` (argparse
+  `--demo` is now required; exits code 2 without it; never run by main.py),
+  `backend/reset_data.py` (NEW: deletes incidents + uploads +
+  training_examples; confirmation prompt, `--yes` skips),
+  `backend/routers/anomalies.py` (stub clusters removed; clusters now computed
+  ONLY from unknown incidents in the DB via embedder.embed +
+  anomaly_stage.cluster_of/to_2d capped at 200 rows; empty DB -> empty lists;
+  falls back to empty lists if models fail), `frontend/src/lib/mock.ts`
+  (store rewritten: starts with 0 incidents / baseLogsProcessed=0, stats and
+  timeseries computed from the store with all zeros + 0 avg/false-alert, never
+  NaN; mock upload actually reads the file and adds parsed rows),
+  `frontend/src/pages/Dashboard.tsx` (timeseries chart gets the standard
+  EmptyBlock when all 7 day counts are 0; empty messages now "No data yet.
+  Upload a log file on the Upload page.", feeds no longer suggest starting
+  the stream), `frontend/src/pages/Live.tsx` (empty message no longer
+  references sample-log replay). Verified: reset script deleted 5241 incidents
+  + 4 uploads → stats/timeseries/incidents/clusters all zero/empty via curl;
+  seed gate exit=2; WS hello then silence;  pytest 7 passed; frontend tsc
+  clean. Backend serves on :8000 as background process.
+- **Phase 2 — DONE.** Fill on ingest. Changed: `backend/services.py` (NEW:
+  shared ingest — `run_ingest(upload_id, lines, label)` owns classify +
+  IncidentRow insert + chunked progress commits + failed-status handling +
+  `_guess_source`/level heuristics moved here; pushes newest ≤50 rows to WS`,
+  `backend/routers/stream.py` (connection registry `_clients` +
+  `bind_loop()` from main.lifespan + thread-safe `push_incident_frames` via
+  `run_coroutine_threadsafe`; dead clients dropped),
+  `backend/routers/upload.py` ( Slimmed: parsing + validation only;
+  dispatches background to services.run_ingest so /api/scrape can share it),
+  `backend/main.py` (binds the event loop for thread->loop pushes),
+  `backend/routers/incidents.py` (timeseries window off-by-one fixed: last
+  `days` calendar days INCLUDING today — freshly ingested rows always land in
+  the last bucket; verified 501 rows counted on today after upload),
+  `frontend/src/hooks/useApi.ts` (upload-done invalidation now also covers
+  `incidents`, `incident`, `timeseries`, `clusters` — previously missing).
+  Verified: upload `data/sample_logs.csv` via /api/upload → 501 incidents,
+  dashboard stats filled from DB (total 501 / critical 65 / unknown 118 /
+  avg 57.14 ms / 7 categories), feed total 501 with newest id 501, WS client
+  received EXACTLY 50 incident frames (ids 452–501), timeseries today = 501;
+  then `reset_data.py --yes` back to all zeros; pytest 7 passed.
+- **Phase 3 — DONE.** Backend scrape. New: `backend/scraper.py` (extraction
+  by content type: text/* → lines, application/json → walk message/msg/log/
+  text/line/event + string arrays, text/html → bs4/lxml over pre/code/samp/
+  tr/li + id|class contains "log", optional CSS selector, visible-body
+  fallback; `log_like_lines` filter = timestamp OR level keyword OR
+  http-status/kv pattern, strip, dedupe-adjacent, cap MAX_UPLOAD_LINES),
+  `backend/routers/scrape.py` (POST /api/scrape {url, selector?}; 400/422/
+  413/502 contract with human details; httpx follow ≤3 redirects, 15 s
+  timeout, 5 MB streaming cap, UA SmartLogAI-Scraper/1.0;
+  SCRAPE_ALLOW_PRIVATE default true with SSRF guard for public deploys),
+  `backend/services.py` shared by both /api/upload and /api/scrape (one
+  ingest path), `backend/demo_site/index.html` (~58 mixed CRM/HRMS/billing/
+  cloud rows in pre/table/ul incl. 3+ odd unknown lines), `tests/conftest.py`
+  (pytest isolation: DATABASE_URL → throwaway sqlite + init_db — the old run
+  wrote 6 incidents into smartlog.db; now the dev DB stays clean),
+  `tests/test_scrape.py` (14 tests: pre/table/json/plain extraction,
+  unknown+hint kept, 400/422 contracts, local-server 202 roundtrip, demo
+  page ≥40 valid lines, selector scoping, malformed URLs), config.py added
+  MAX_UPLOAD_LINES + SCRAPE_* knobs, requirements.txt += httpx/
+  beautifulsoup4/lxml (installed in venv). Verified: pytest 21 passed; curl
+  against http.server 9000 — scrape → 202 upload_id=2, 58 lines; bad scheme
+  → 400; unreachable port → 502; dev DB reset to zeros after verification.
+- **Phase 4 — DONE.** Frontend scrape UI. Changed: `frontend/src/lib/api.ts`
+  (`scrapeUrl(url, onProgress?)` reusing the UploadResponse contract; real
+  mode POSTs ${BASE_URL}/api/scrape JSON, mock mode rejects with "Fetching
+  from a URL needs the backend. Set VITE_USE_MOCK=false."; wired into the
+  `api` object unwrapped since it handles mock itself),
+  `frontend/src/hooks/useApi.ts` (`useScrapeUrl` mirrors useUpload 1:1:
+  UploadProgress state, 500 ms /api/upload/{id}/status polling, same
+  query invalidations incl. timeseries+clusters; the URL rides in
+  progress.filename so the summary shows the source),
+  `frontend/src/pages/Upload.tsx` (tab strip built from the existing Button
+  variants — no Tabs component exists in this project — "Upload file" default
+  keeps the old flow pixel-identical; "From URL" card with Input placeholder
+  http://localhost:9000/logs.html + "Fetch and classify" button; client-side
+  validation mirrors the backend 400; errors render in the page's existing
+  inline red/muted style — no toast system exists; the shared ProgressSummary
+  card is the same markup the file path uses). Verified: tsc clean, Vite
+  transforms all three changed modules (200), demo_site (http.server 9000)
+  + scrape via the exact request sequence the UI issues → 202/58 lines →
+  done → dashboard 58/2/24 + feed total 58; then reset_data.py --yes back
+  to zeros. Backend :8000, demo :9000, Vite :5173 running as background
+  processes.
+- **Phase 5 — DONE.** QA + docs. git diff review: only the intended files
+  changed (adds/tweaks above + regenerated __pycache__ and smartlog.db
+  artifacts); no component under src/components/ui/*/ touched, no colors/
+  fonts/routes changed. Frontend `npm test` does not exist in this project —
+  the equivalent checks are `npm run lint` (0 errors, 3 pre-existing style
+  warnings incl. a ref read in IncidentDrawer) and `npm run build`
+  (tsc -b + vite build, PASSED after fixing two real type bugs I had put in
+  mock.ts's count helper: unused generic + unsound casts — replaced with a
+  plain countsOf helper mapped into the exact CategoryCount/SourceCount/
+  SeverityCount shapes). Backend pytest: 21 passed. Combined-sources
+  acceptance verified: 11-row CSV upload + scraped 58 → total_logs 61,
+  critical 5, then reset_data.py --yes back to 0. README (root):
+  zero-state paragraph, reset_data.py usage, seed.py --demo note, /api/scrape
+  contract, scrape limitations (static content only, permission notice), SSRF
+  note, demo-site serve command; startup command no longer lists seed.py.
+  backend/.env.example: SCRAPE_ALLOW_PRIVATE documented. Final state: fresh
+  DB serves all-zero stats with empty lists; WS silent; pytest clean;
+  frontend build clean. readmephase3.md acceptance checklist 1-6 all true
+  (6 = visual design unchanged, verified by diff + no ui/ component edits).

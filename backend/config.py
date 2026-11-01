@@ -52,6 +52,21 @@ EMBED_MODEL_NAME: str = "all-MiniLM-L6-v2"
 # Minimum LogisticRegression probability required to accept the ML decision.
 BERT_CONFIDENCE_THRESHOLD: float = 0.70
 
+# --- Ingest limits ------------------------------------------------------------
+# Hard cap on lines accepted per ingest (upload or scrape), shared by both.
+MAX_UPLOAD_LINES: int = 5000
+
+# --- Web scrape (POST /api/scrape) --------------------------------------------
+# MUST DEFAULT TO TRUE so localhost/frequency demo targets work out of the
+# box. Set SCRAPE_ALLOW_PRIVATE=false if this backend is ever deployed on a
+# public host — it blocks requests to localhost/127.x and private ranges to
+# prevent the backend being used as an SSRF proxy.
+SCRAPE_ALLOW_PRIVATE: bool = _get("SCRAPE_ALLOW_PRIVATE", "true").strip().lower() != "false"
+SCRAPE_TIMEOUT_S: float = 15.0
+SCRAPE_MAX_REDIRECTS: int = 3
+SCRAPE_MAX_BODY_BYTES: int = 5 * 1024 * 1024  # 5 MB deep-fetch cap
+SCRAPE_USER_AGENT: str = "SmartLogAI-Scraper/1.0"
+
 # Sample log stream replays at a random 1-3 s interval.
 STREAM_MIN_INTERVAL_S: float = 1.0
 STREAM_MAX_INTERVAL_S: float = 3.0

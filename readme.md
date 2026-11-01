@@ -53,9 +53,29 @@ POST /api/upload (.log/.txt/.csv -> batch classify -> store; background task wit
 GET /api/anomalies/clusters (2D PCA points + cluster ids + noise flag + sample logs)
 POST /api/anomalies/clusters/{id}/label (human feedback saved as a training example)
 GET /api/metrics (serves real saved metrics.json)
-WS /ws/stream (replays sample_logs.csv at random 1-3s intervals, classifies each through the REAL pipeline, stores it, broadcasts JSON)
+POST /api/scrape {url, selector?} (fetch a static page, extract log-like lines, ingest exactly like a CSV upload; source URL stored as the file_name)
+WS /ws/stream (stays connected but emits nothing until an ingest; then it pushes the newest ≤50 ingested rows)
 CORS: http://localhost:5173 and http://localhost:8080.
-seed.py pre-populates ~300 classified incidents with realistic, uneven distributions so the dashboard is never empty.
+
+The app starts from a ZERO state: the Dashboard shows 0 for every KPI and
+empty charts/feeds until real logs are ingested (file upload or URL scrape).
+
+  python reset_data.py        # wipe all logs + upload records + feedback
+  python reset_data.py --yes  # skip the confirmation prompt
+
+seed.py is DEMO ONLY and never runs automatically; it requires an explicit
+flag:  python seed.py --demo
+
+Scrape limitations: static HTML/text/JSON only — pages that render logs with
+JavaScript are not supported. Only scrape sites you own or have permission
+to scrape. Localhost/private addresses must work for local demos, so
+SCRAPE_ALLOW_PRIVATE defaults to true; SET IT TO FALSE if the backend is
+ever deployed publicly (it then refuses loopback/private targets to prevent
+SSRF). See backend/.env.example.
+
+Try the scraper:
+    python -m http.server 9000 --directory backend/demo_site
+then scrape http://localhost:9000/index.html from the Upload page (From URL tab).
 
 ═══ DESIGN BRIEF (critical: must look hand-designed by a human, NOT AI-generated) ═══
 You cannot see the rendered page, so follow these tokens EXACTLY instead of improvising. Put them in src/index.css as CSS variables and in tailwind.config; never hard-code colors in components.
@@ -131,7 +151,7 @@ Phase 8: Design QA: scan the whole UI code for HARD BANS violations (gradients, 
 Phase 9: Final deliverables: folder tree, run commands, 5-step smoke test, and a "Viva cheat sheet" of 10 examiner questions about the hybrid pipeline (why regex first, why Sentence-BERT, why DBSCAN, why an LLM fallback, how false alerts are reduced, limitations) with concise answers.
 
 Run commands to document:
-  backend: python -m venv venv && pip install -r requirements.txt && python train.py && python seed.py && uvicorn main:app --reload
+  backend: python -m venv venv && pip install -r requirements.txt && python train.py && uvicorn main:app --reload
   frontend: npm install && npm run dev
 
 Start with Phase 0 now.

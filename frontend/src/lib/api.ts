@@ -109,6 +109,34 @@ export const uploadLogs = (file: File): Promise<UploadResponse> => {
 export const getUploadStatus = (uploadId: number): Promise<UploadStatus> =>
   request(`/api/upload/${uploadId}/status`);
 
+// --- Scrape (Feature 2) -------------------------------------------------------
+
+/**
+ * POST /api/scrape {url} — fetch a static page and ingest its log-like lines
+ * exactly like a CSV upload. Reuses the UploadResponse contract; `filename`
+ * carries the source URL. Mock mode needs the backend, so it throws.
+ */
+export const scrapeUrl = (
+  url: string,
+  onProgress?: (pct: number) => void,
+): Promise<UploadResponse> => {
+  if (USE_MOCK) {
+    return Promise.reject(
+      new Error("Fetching from a URL needs the backend. Set VITE_USE_MOCK=false."),
+    );
+  }
+  onProgress?.(10);
+  return request<UploadResponse>("/api/scrape", {
+    method: "POST",
+    body: JSON.stringify({ url }),
+  }).then((res) => {
+    // Extraction finished server-side; classification continues in the
+    // background on /api/upload/{id}/status (the hook polls from here).
+    onProgress?.(40);
+    return res;
+  });
+};
+
 // --- Anomalies -------------------------------------------------------------
 
 export const getClusters = (): Promise<ClustersResponse> =>
@@ -152,6 +180,7 @@ export const api = {
   classifyText: withMock(classifyText, "classifyText"),
   uploadLogs: withMock(uploadLogs, "uploadLogs"),
   getUploadStatus: withMock(getUploadStatus, "getUploadStatus"),
+  scrapeUrl, // handles mock mode itself (throws the guidance error)
   getClusters: withMock(getClusters, "getClusters"),
   labelCluster: withMock(labelCluster, "labelCluster"),
   getMetrics: withMock(getMetrics, "getMetrics"),

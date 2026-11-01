@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Acme Logs — server log dump (demo)</title>
+</head>
+<body>
+<h1>Recent application events</h1>
+
+<pre>
+2026-10-30 08:59:02 INFO crm-app-03 startup: connection pool warmed, min=5 max=50, req_id=a41f01
+2026-10-30 09:01:17 WARN crm-app-03 cache: lru cache eviction spike, entries=12043 rate=8/s
+2026-10-30 09:02:44 INFO billing-api-02 invoice batch started, batch_id=INV-2381
+2026-10-30 09:02:51 INFO billing-api-02 invoice batch finished, batch_id=INV-2381, ok=412 failed=0
+2026-10-30 09:04:03 ERROR billing-api-02 gateway: card processor answered status=503, retry=1, merchant=8899
+2026-10-30 09:04:09 ERROR billing-api-02 gateway: card processor answered status=503, retry=2, merchant=8899
+2026-10-30 09:05:12 CRITICAL billing-api-02 payments: settlement job failed after 3 attempts, job_id=stl-77
+2026-10-30 09:06:22 INFO hrms-web-01 payroll cycle opened for pay_period=2026-10, employees=2048
+2026-10-30 09:08:41 WARN hrms-web-01 ldap: bind latency above threshold, ms count avg=412 p99=980
+2026-10-30 09:09:15 INFO hrms-web-01 user logged in, user_id=1042 team=sales
+2026-10-30 09:12:03 ERROR crm-app-01 db: pool exhausted waiting for connection, active=50 queued=27
+2026-10-30 09:12:37 WARN crm-app-01 db: slow query detected 4120ms, sql=oracle "SELECT * FROM accounts FETCH ALL"
+2026-10-30 09:13:59 INFO node-07 systemd: Started Daily apt upgrade and clean activities.
+2026-10-30 09:14:22 ERROR node-07 api: upstream timed out retrieving /v2/orders, req_id=a41f2c after 30s
+2026-10-30 09:15:03 WARN billing-api-01 payment: transaction declined, card token reused, txn_id=tx-118
+2026-10-30 09:16:41 INFO hrms-web-01 user logged in, user_id=2991 team=finance
+2026-10-30 09:17:29 INFO crm-app-02 campaign spooler drained queue, jobs=0 backlog=0
+2026-10-30 09:19:08 ERROR node-12 kernel: e1000e eth0 link down, retransmit queue flushed
+2026-10-30 09:19:21 INFO node-12 systemd: e1000e eth0 link up, speed=1000
+2026-10-30 09:20:31 WARN cloud-ctl autoscaler: instance spot reclamation in 120s aws us-east-1
+2026-10-30 09:22:41 INFO node-07 api: order cache warmed, keys=9120 items=0
+2026-10-30 09:23:15 ERROR hrms-web-02 directory: replication lag 900s, acls re-sync queued
+2026-10-30 09:24:02 WARN crm-app-01 search: index rebuild took 41s, docs=1043221
+2026-10-30 09:25:47 INFO billing-api-02 refund batch done, count=23 total=881.40
+2026-10-30 09:26:58 ERROR crm-app-04 auth: session token validation failed for user_id=7788, ip=10.2.4.9
+2026-10-30 09:27:19 INFO hrms-web-01 user logged in, user_id=2210 team=support
+2026-10-30 09:28:44 WARN node-15 disk: smart attribute 197 rising, pending sectors=14
+2026-10-30 09:29:31 ERROR billing-api-01 db: deadlock detected on invoices, victim pid=22144
+2026-10-30 09:31:20 INFO cloud-ctl collector: metrics ingested rate=4.2k/s queue=0
+2026-10-30 09:32:09 CRITICAL crm-app-01 auth: brute force suspected from subnet 10.2.x, acl triggered
+2026-10-30 09:33:10 INFO hrms-web-03 s3 bucket upload finished, object=payroll-oct
+2026-10-30 09:34:57 WARN crm-app-03 cache: lru hit ratio fell to 41%, threshold=60
+</pre>
+
+<h2>Nightly batch report</h2>
+<table>
+  <tr><td>Time</td><td>System</td><td>Level</td><td>Message</td></tr>
+  <tr><td>02-10-30 00:00</td><td>CRM</td><td>INFO</td><td>2026-10-30 00:00:09 INFO crm cron: nightly lead-sync completed, imported=1703 skipped=4</td></tr>
+  <tr><td>02-10-30 00:04</td><td>Billing</td><td>ERROR</td><td>2026-10-30 00:04:51 ERROR billing nightly: mismatch invoice total vs ledger, invoice=INV-2297 delta=-14.20</td></tr>
+  <tr><td>02-10-30 00:09</td><td>HRMS</td><td>WARN</td><td>2026-10-30 00:09:12 WARN hrms nightly: employee id 442 has no active payroll profile, skipped</td></tr>
+  <tr><td>02-10-30 00:12</td><td>Billing</td><td>CRITICAL</td><td>2026-10-30 00:12:00 CRITICAL billing nightly: settlement run aborted, ledger lock timed out 30s</td></tr>
+  <tr><td>02-10-30 00:15</td><td>Cloud</td><td>INFO</td><td>2026-10-30 00:15:44 INFO cloud nightly: instance snapshot finished sn-i91x, size=128GB</td></tr>
+  <tr><td>02-10-30 00:21</td><td>CRM</td><td>ERROR</td><td>2026-10-30 00:21:33 ERROR crm nightly: replicatore lag above 900s, shard=crm-2, lag=1204</td></tr>
+  <tr><td>02-10-30 00:24</td><td>Cloud</td><td>WARN</td><td>2026-10-30 00:24:07 WARN cloud nightly: disk usage 91% on db-replica-3, mount=/var/lib/data</td></tr>
+  <tr><td>02-10-30 00:29</td><td>HRMS</td><td>INFO</td><td>2026-10-30 00:29:18 INFO hrms nightly: timesheets closed for pay_period=2026-10, employees=2044</td></tr>
+  <tr><td>02-10-30 00:31</td><td>Billing</td><td>INFO</td><td>2026-10-30 00:31:52 INFO billing nightly: dunning queue processed, sent=87 failed=2</td></tr>
+  <tr><td>02-10-30 00:36</td><td>Cloud</td><td>ERROR</td><td>2026-10-30 00:36:29 ERROR cloud nightly: backup push failed, bucket=sn2-prod-backups, status=500</td></tr>
+  <tr><td>02-10-30 00:39</td><td>CRM</td><td>WARN</td><td>2026-10-30 00:39:10 WARN crm nightly: de-dupe rules touched 121 duplicate contacts</td></tr>
+  <tr><td>02-10-30 00:44</td><td>HRMS</td><td>ERROR</td><td>2026-10-30 00:44:47 ERROR hrms nightly: payroll parse failure for employee id=2187, file=http://localhost:goodbye</td></tr>
+  <tr><td>02-10-30 00:47</td><td>Cloud</td><td>INFO</td><td>2026-10-30 00:47:03 INFO cloud nightly: cert rotation finished, renewed=14 pending=0</td></tr>
+  <tr><td>02-10-30 00:52</td><td>CRM</td><td>CRITICAL</td><td>2026-10-30 00:52:00 CRITICAL crm nightly: lead-sync pipeline aborted, auth token refresh failed 3x</td></tr>
+</table>
+
+<h2>Worker chatter</h2>
+<ul>
+  <li>2026-10-30 05:44:23 DEBUG gene work scheduler: route table refreshed, hops=42</li>
+  <li>2026-10-30 05:44:42 DEBUG billing worker: retrying transform job with backoff=8s, exp_id=8xg</li>
+  <li>2026-10-30 05:45:10 WARNING billing worker: refund double-check flagged txn, id=tx-3321 amount=99.00</li>
+  <li>2026-10-30 05:45:19 INFO crm worker: enrichment looked up 8 contacts</li>
+  <li>2026-10-30 05:45:33 ERROR hrms worker: cannot pull employee 3028, directory returns HTTP 404</li>
+  <li>2026-10-30 05:45:44 CRITICAL cloud worker: raft leader lost, term=12, re-election scheduled</li>
+  <li>2026-10-30 05:45:52 INFO cloud worker: raft leader elected, term=13, leader=node-07</li>
+  <li>2026-10-30 05:46:03 INFO retry worker: import baseline step finished fragment iql payios</li>
+  <li>2026-10-30 05:46:29 INFO hrs worker: background task 6 unpaused, user_id=3412</li>
+  <li>2026-10-30 05:46:43 WARN crm edge: notify_state_segmented listener reconnected</li>
+  <li>2026-10-30 05:46:58 INFO billing edge worker: retry sq flushed, jobs=0</li>
+  <li>ERROR: deadline miss — the assignee started the shift 30 seconds later.</li>
+  <li>no rulebook knows this pattern, leaving it unlabeled for triage</li>
+  <li>scheduler hiccup: something odd happened and nothing matched it</li>
+</ul>
+
+<p>Footer: this page is plain static HTML for the SmartLog demo only.</p>
+</body>
+</html>

@@ -92,7 +92,7 @@ export default function LivePage() {
       <div className="border border-border rounded-[6px] bg-surface overflow-hidden relative">
         <div ref={containerRef} className="max-h-[600px] overflow-auto">
           {filtered.length === 0 ? (
-            <EmptyBlock message="Waiting for events from the stream… The backend replays sample logs every few seconds." />
+            <EmptyBlock message="Streaming connected. No events yet — ingest logs on the Upload page to see them here." />
           ) : (
             <table className="w-full text-[12px]">
               <thead className="sticky top-0 bg-subtle/40 border-b border-border">

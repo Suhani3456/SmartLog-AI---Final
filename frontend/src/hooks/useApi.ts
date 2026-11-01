@@ -119,8 +119,12 @@ export const useUpload = () => {
         if (status.status !== "processing") {
           stopPolling();
           if (status.status === "done") {
+            // Every dashboard slice reads from these queries; invalidate all.
             void qc.invalidateQueries({ queryKey: ["incidents"] });
+            void qc.invalidateQueries({ queryKey: ["incident"] });
             void qc.invalidateQueries({ queryKey: ["stats"] });
+            void qc.invalidateQueries({ queryKey: ["timeseries"] });
+            void qc.invalidateQueries({ queryKey: ["clusters"] });
           }
         }
       } catch {
@@ -150,6 +154,91 @@ export const useUpload = () => {
   });
 
   return { upload: mutation.mutate, uploading: mutation.isPending, progress };
+};
+
+export interface ScrapeUrlVars {
+  url: string;
+  onProgress?: (pct: number) => void;
+}
+
+/**
+ * Scrape a URL and ingest the extracted lines — mirrors useUpload exactly
+ * (progress state, /api/upload/{id}/status polling, same query invalidation).
+ * The scraped URL rides in `progress.filename`, so the shared summary shows
+ * the source in the file-name slot.
+ */
+export const useScrapeUrl = () => {
+  const qc = useQueryClient();
+  const [progress, setProgress] = useState<UploadProgress>({
+    uploadId: null,
+    status: "idle",
+    processed: 0,
+    total: 0,
+    incidentsCreated: 0,
+    filename: "",
+  });
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const stopPolling = () => {
+    if (pollRef.current) clearInterval(pollRef.current);
+    pollRef.current = null;
+  };
+
+  const startPolling = (uploadId: number) => {
+    stopPolling();
+    pollRef.current = setInterval(async () => {
+      try {
+        const status = await api.getUploadStatus(uploadId);
+        setProgress((prev) => ({
+          ...prev,
+          status: status.status === "done" ? "done" : status.status === "failed" ? "failed" : "processing",
+          processed: status.processed,
+          total: status.total,
+          incidentsCreated: status.incidents_created,
+        }));
+        if (status.status !== "processing") {
+          stopPolling();
+          if (status.status === "done") {
+            void qc.invalidateQueries({ queryKey: ["incidents"] });
+            void qc.invalidateQueries({ queryKey: ["incident"] });
+            void qc.invalidateQueries({ queryKey: ["stats"] });
+            void qc.invalidateQueries({ queryKey: ["timeseries"] });
+            void qc.invalidateQueries({ queryKey: ["clusters"] });
+          }
+        }
+      } catch {
+        /* transient poll error: keep trying until the interval is cleared */
+      }
+    }, 500);
+  };
+
+  useEffect(() => stopPolling, []);
+
+  const mutation = useMutation({
+    mutationFn: ({ url, onProgress }: ScrapeUrlVars) => {
+      setProgress((prev) => ({ ...prev, status: "uploading", filename: url }));
+      return api.scrapeUrl(url, onProgress);
+    },
+    onSuccess: (res) => {
+      setProgress((prev) => ({
+        ...prev,
+        uploadId: res.upload_id,
+        total: res.total_lines,
+        status: "processing",
+        filename: res.filename,
+      }));
+      startPolling(res.upload_id);
+    },
+    onError: () => setProgress((prev) => ({ ...prev, status: "failed" })),
+  });
+
+  return {
+    scrape: (url: string, onProgress?: (pct: number) => void) =>
+      mutation.mutate({ url, onProgress }),
+    scraping: mutation.isPending,
+    progress,
+    error: mutation.error,
+  };
 };
 
 // --- Live stream ----------------------------------------------------------------

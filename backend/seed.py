@@ -1,12 +1,19 @@
 """
 SmartLog AI — seed database with ~300 classified incidents.
 
+DEMO ONLY: this script never runs automatically and is NOT called by main.py.
+Run it explicitly when you want a non-empty demo dataset:
+    python seed.py --demo
+The application itself starts from a zero state — the Dashboard fills only
+once real logs are ingested (upload or URL scrape).
+
 Pre-populates realistic, uneven distributions:
 - More Info/Low than Critical
 - A couple of busy hours
 - One noisy source system (Cloud/Server)
 """
 
+import argparse
 import csv
 import json
 import random
@@ -108,4 +115,12 @@ def main():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Seed the SmartLog DB with demo data.")
+    parser.add_argument(
+        "--demo",
+        action="store_true",
+        required=True,
+        help="Required. Seeding is never automatic; confirm with this flag.",
+    )
+    args = parser.parse_args()
     main()

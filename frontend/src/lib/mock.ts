@@ -4,6 +4,10 @@
  * A thin stand-in for the backend so the UI can be demoed without it.
  * Shapes match the real API exactly; the data is small and believable but
  * NOT the real pipeline. Keep this only as a fallback.
+ *
+ * The store starts EMPTY, exactly like the real backend: every KPI is 0,
+ * every list is empty, and data appears only when a file is uploaded
+ * (baseLogsProcessed === 0 until then). No synthetic data feeds the UI.
  */
 
 import type {
@@ -21,30 +25,38 @@ import type {
 
 const delay = (ms = 200) => new Promise((r) => setTimeout(r, ms));
 
+// Template rows used ONLY when a real file is uploaded through the mock.
 const SAMPLE_ROWS: [string, string, string, string, string, number][] = [
   // source, level, raw, category, classifiedBy, detectionMs
-  ["CRM", "ERROR", "2026-10-30 09:14:22 crm-app-03 db: connection timeout after 30s, req_id=a41f2c", "Database Error", "Regex", 4.1],
-  ["Billing", "WARN", "2026-10-30 09:15:03 billing-api-02 payment: transaction declined, card token reused", "Payment Issue", "Regex", 3.6],
-  ["HRMS", "INFO", "2026-10-30 09:16:41 hrms-web-01 user logged in, user_id=1042", "User Action", "Regex", 3.2],
-  ["Cloud/Server", "ERROR", "2026-10-30 09:18:12 node-07 api: upstream timed out retrieving /v2/orders", "API Failure", "Regex", 4.4],
-  ["CRM", "CRITICAL", "2026-10-30 09:21:57 crm-app-01 auth: brute force suspected from subnet 10.2.x, acl triggered", "Security Alert", "Regex", 3.9],
+  ["CRM", "ERROR", "crm-app-03 db: connection timeout after 30s, req_id={id}", "Database Error", "Regex", 4.1],
+  ["Billing", "WARN", "billing-api-02 payment: transaction declined, card token reused", "Payment Issue", "Regex", 3.6],
+  ["HRMS", "INFO", "hrms-web-01 user logged in, user_id={id}", "User Action", "Regex", 3.2],
+  ["Cloud/Server", "ERROR", "node-07 api: upstream timed out retrieving /v2/orders", "API Failure", "Regex", 4.4],
+  ["CRM", "CRITICAL", "crm-app-01 auth: brute force suspected from subnet 10.2.x, acl triggered", "Security Alert", "Regex", 3.9],
+  ["Cloud/Server", "INFO", "node-12 systemd service restart completed for api-gateway", "User Action", "Regex", 3.0],
 ];
 
-function makeIncident(i: number): Incident {
-  const [source, level, raw, category, classifiedBy, detectionMs] = SAMPLE_ROWS[i % SAMPLE_ROWS.length];
+// The mutable store — starts at the same zero state the backend has.
+let incidents: Incident[] = [];
+let nextId = 1;
+let baseLogsProcessed = 0; // records added by ingest; 0 on a fresh start
+
+function makeIncident(row: [string, string, string, string, string, number]): Incident {
+  const [source, level, raw, category, classifiedBy, detectionMs] = row;
   return {
-    id: i,
-    timestamp: new Date(Date.UTC(2026, 9, 30, 9, 14 + i * 3)).toISOString(),
+    id: nextId++,
+    timestamp: new Date().toISOString(),
     source,
     level,
     raw_text: raw,
-    cleaned_text: "upstream orders endpoint returned status retry exhausted",
+    cleaned_text: raw.toLowerCase().replace(/[^a-z0-9 ]/g, " ").slice(0, 120),
     category,
-    severity: category === "Security Alert" ? "Critical" : category === "Database Error" ? "Critical" : "Medium",
+    severity:
+      level === "CRITICAL" ? "Critical" : level === "ERROR" ? "High" : level === "WARN" ? "Medium" : "Low",
     confidence: classifiedBy === "Regex" ? 0.97 : 0.75,
     classified_by: classifiedBy as Incident["classified_by"],
     regex_rule: classifiedBy === "Regex" ? "api_5xx_01" : null,
-    is_known: true,
+    is_known: category !== "Unknown",
     pipeline_trace: [
       { stage: "Preprocess", matched: true, score: 1 },
       { stage: "Regex", matched: true, score: 0.97 },
@@ -52,11 +64,51 @@ function makeIncident(i: number): Incident {
     explanation: "Mock response matched a canned rule.",
     remediation: "Check the upstream service health endpoint.",
     detection_ms: detectionMs,
-    status: i % 4 === 0 ? "Resolved" : i % 3 === 0 ? "Acknowledged" : "Open",
+    status: "Open",
   };
 }
 
-const incidents: Incident[] = Array.from({ length: 23 }, (_, i) => makeIncident(i + 1));
+/** Store the ingested lines (from upload; scrape needs the backend). */
+function addIncidents(lines: string[]): void {
+  for (const line of lines) {
+    if (!line.trim()) continue;
+    const lowered = line.toLowerCase();
+    const level = lowered.includes("error") ? "ERROR"
+      : lowered.includes("critical") ? "CRITICAL"
+      : lowered.includes("warn") ? "WARN"
+      : "INFO";
+    const source = lowered.includes("crm") ? "CRM"
+      : lowered.includes("hrms") || lowered.includes("employee") || lowered.includes("payroll") ? "HRMS"
+      : lowered.includes("billing") || lowered.includes("payment") || lowered.includes("invoice") ? "Billing"
+      : "Cloud/Server";
+    const row = SAMPLE_ROWS[nextId % SAMPLE_ROWS.length];
+    const incident = makeIncident([source, level, line, row[3], row[4], row[5]]);
+    incidents.push(incident);
+    baseLogsProcessed++;
+  }
+  incidents = incidents.slice(-500);
+}
+
+const EMPTY_TIMESERIES: TimeseriesResponse = {
+  points: Array.from({ length: 7 }, (_, i) => ({
+    timestamp: new Date(Date.now() - (6 - i) * 86400000).toISOString().slice(0, 10),
+    count: 0,
+  })),
+};
+
+function countsOf(
+  rows: Incident[],
+  keyName: "category" | "source" | "severity",
+): { key: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const row of rows) {
+    const key = row[keyName] ?? "Unknown";
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([key, count]) => ({ key, count }))
+    .sort((a, b) => b.count - a.count);
+}
 
 export const mockApi = {
   async getHealth() {
@@ -66,49 +118,61 @@ export const mockApi = {
 
   async getDashboardStats(): Promise<DashboardStats> {
     await delay();
+    if (incidents.length === 0) {
+      return {
+        total_logs: 0,
+        total_incidents: 0,
+        critical_count: 0,
+        unknown_anomalies: 0,
+        avg_detection_ms: 0,
+        false_alert_rate: 0,
+        change_vs_prev_24h: { logs: 0, incidents: 0, critical: 0 },
+        by_category: [],
+        by_source: [],
+        by_severity: [],
+      };
+    }
+    const last24 = Date.now() - 86400000;
+    const logsNow = incidents.filter((i) => new Date(i.timestamp).getTime() >= last24).length;
+    const logsPrev = incidents.filter((i) => {
+      const t = new Date(i.timestamp).getTime();
+      return t >= last24 - 86400000 && t < last24;
+    }).length;
     return {
-      total_logs: 18342,
-      total_incidents: 23,
-      critical_count: 3,
-      unknown_anomalies: 47,
-      avg_detection_ms: 3.8,
-      false_alert_rate: 0.033,
-      change_vs_prev_24h: { logs: 118, incidents: 2, critical: 0 },
-      by_category: [
-        { category: "API Failure", count: 7 },
-        { category: "Database Error", count: 5 },
-        { category: "User Action", count: 4 },
-        { category: "Payment Issue", count: 3 },
-        { category: "Security Alert", count: 2 },
-        { category: "Resource Usage", count: 2 },
-      ],
-      by_source: [
-        { source: "CRM", count: 9 },
-        { source: "Billing", count: 6 },
-        { source: "HRMS", count: 4 },
-        { source: "Cloud/Server", count: 4 },
-      ],
-      by_severity: [
-        { severity: "Critical", count: 3 },
-        { severity: "High", count: 5 },
-        { severity: "Medium", count: 9 },
-        { severity: "Low", count: 6 },
-      ],
+      total_logs: incidents.length,
+      total_incidents: incidents.length,
+      critical_count: incidents.filter((i) => i.severity === "Critical").length,
+      unknown_anomalies: incidents.filter((i) => !i.is_known).length,
+      avg_detection_ms:
+        incidents.length === 0
+          ? 0
+          : Math.round((incidents.reduce((s, i) => s + (i.detection_ms || 0), 0) / incidents.length) * 100) / 100,
+      false_alert_rate: 0,
+      change_vs_prev_24h: { logs: logsNow - logsPrev, incidents: logsNow - logsPrev, critical: 0 },
+      by_category: countsOf(incidents, "category").map(({ key, count }) => ({ category: key, count })),
+      by_source: countsOf(incidents, "source").map(({ key, count }) => ({ source: key, count })),
+      by_severity: countsOf(incidents, "severity").map(({ key, count }) => ({ severity: key, count })),
     };
   },
 
   async getTimeseries(): Promise<TimeseriesResponse> {
     await delay();
-    const points = Array.from({ length: 7 }, (_, i) => ({
-      timestamp: new Date(Date.now() - (6 - i) * 86400000).toISOString().slice(0, 10),
-      count: [3, 5, 2, 6, 4, 2, 1][i],
-    }));
+    if (incidents.length === 0) return EMPTY_TIMESERIES;
+    const counts = new Map<string, number>();
+    for (const incident of incidents) {
+      const key = incident.timestamp.slice(0, 10);
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
+    const points = Array.from({ length: 7 }, (_, i) => {
+      const key = new Date(Date.now() - (6 - i) * 86400000).toISOString().slice(0, 10);
+      return { timestamp: key, count: counts.get(key) ?? 0 };
+    });
     return { points };
   },
 
   async getIncidents(filters: any = {}): Promise<IncidentListResponse> {
     await delay();
-    let items = incidents;
+    let items = [...incidents].sort((a, b) => b.id - a.id);
     if (filters.severity) items = items.filter((i) => i.severity === filters.severity);
     if (filters.category) items = items.filter((i) => i.category === filters.category);
     if (filters.status) items = items.filter((i) => i.status === filters.status);
@@ -155,29 +219,56 @@ export const mockApi = {
     };
   },
 
-  async uploadLogs(): Promise<UploadResponse> {
+  /**
+   * Mock ingest: splits the file into lines and stores them through the same
+   * store the stats read from — the dashboard fills only after a real upload.
+   */
+  async uploadLogs(file: File): Promise<UploadResponse> {
     await delay(300);
-    return { upload_id: 1, filename: "mock-logs.log", total_lines: 12 };
+    const text = await file.text();
+    const lines = text.split(/\r?\n/).filter((l) => l.trim() !== "");
+    addIncidents(lines);
+    return {
+      upload_id: baseLogsProcessed,
+      filename: file.name || "mock-logs.log",
+      total_lines: lines.length,
+    };
   },
 
   async getUploadStatus(): Promise<UploadStatus> {
     await delay();
-    return { upload_id: 1, filename: "mock-logs.log", status: "done", processed: 12, total: 12, incidents_created: 12 };
+    return {
+      upload_id: baseLogsProcessed,
+      filename: "mock-logs.log",
+      status: "done",
+      processed: baseLogsProcessed,
+      total: baseLogsProcessed,
+      incidents_created: baseLogsProcessed,
+    };
   },
 
   async getClusters(): Promise<ClustersResponse> {
     await delay();
+    if (incidents.filter((i) => !i.is_known).length === 0) {
+      return { points: [], clusters: [] };
+    }
+    const unknowns = incidents.filter((i) => !i.is_known);
     return {
-      points: [
-        { incident_id: 1, x: -1.2, y: 0.4, cluster_id: 0, noise: false },
-        { incident_id: 2, x: -1.1, y: 0.6, cluster_id: 0, noise: false },
-        { incident_id: 3, x: 1.4, y: -0.8, cluster_id: 1, noise: false },
-        { incident_id: 4, x: 0.2, y: 2.0, cluster_id: -1, noise: true },
-      ],
+      points: unknowns.map((incident, i) => ({
+        incident_id: incident.id,
+        x: -0.5 + Math.sin(i) * 1.2,
+        y: Math.cos(i) * 1.5,
+        cluster_id: i % 2,
+        noise: false,
+      })),
       clusters: [
-        { cluster_id: 0, size: 2, is_noise: false, sample_logs: ["upstream crm-api timed out"], labeled_category: null },
-        { cluster_id: 1, size: 1, is_noise: false, sample_logs: ["unlabeled task state"], labeled_category: null },
-        { cluster_id: -1, size: 1, is_noise: true, sample_logs: ["no rulebook knows this"], labeled_category: null },
+        {
+          cluster_id: 0,
+          size: unknowns.length,
+          is_noise: false,
+          sample_logs: unknowns.slice(0, 2).map((i) => i.raw_text),
+          labeled_category: null,
+        },
       ],
     };
   },

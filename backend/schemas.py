@@ -33,9 +33,9 @@ ClassifierName = Literal["Regex", "BERT+LogReg", "DBSCAN", "LLM"]
 class PipelineStage(BaseModel):
     """One row in the pipeline trace shown by the stepper UI."""
 
-    stage: str            # "Preprocess" | "Regex" | "BERT+LogReg" | "DBSCAN" | "LLM"
-    matched: bool
-    score: float          # 0.0-1.0 when applicable, 0.0 when not decisive
+    stage: str            # "Preprocessing" | "Regex Match" | "BERT Embedding + Logistic Regression" | "DBSCAN Anomaly Check" | "LLM Fallback"
+    matched: bool = True
+    score: float = 0.0          # 0.0-1.0 when applicable, 0.0 when not decisive
 
 
 class ClassificationResult(BaseModel):
@@ -138,8 +138,8 @@ class DashboardStats(BaseModel):
 
 
 class TimeseriesPoint(BaseModel):
-    timestamp: str                    # ISO date, one bucket
-    count: int
+    timestamp: str = ""
+    count: int = 0
 
 
 class TimeseriesResponse(BaseModel):
@@ -214,11 +214,12 @@ class MetricsResponse(BaseModel):
     """GET /api/metrics — serves the real backend/models/metrics.json shape."""
 
     accuracy: float
-    f1_macro: float
-    trained_at: str
+    precision: float
+    recall: float
+    f1: float
     per_class: list[PerClassMetric]
     confusion_matrix: dict[str, Any]  # {"labels": [...], "matrix": [[...]]}
-    baseline_comparison: list[BaselineRow]
+    comparison: list[BaselineRow]
     classifier_usage: list[ClassifierUsageRow]
 
 
@@ -230,6 +231,12 @@ class UploadResponse(BaseModel):
     upload_id: int
     filename: str
     total_lines: int
+
+
+class ScrapeRequest(BaseModel):
+    """POST /api/scrape body: the URL to fetch, optionally one CSS selector."""
+    url: str
+    selector: Optional[str] = None
 
 
 class UploadStatus(BaseModel):

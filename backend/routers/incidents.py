@@ -10,13 +10,12 @@ from datetime import datetime, timedelta
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from sqlalchemy.orm import Session
 
 from db import Incident as IncidentRow, get_db
 from schemas import (
     CategoryCount,
-    ChangeDelta,
     DashboardStats,
     Incident,
     IncidentListResponse,
@@ -26,6 +25,9 @@ from schemas import (
     TimeseriesPoint,
     TimeseriesResponse,
 )
+
+# Backward-compat shim: the old namedtuples/counts still referenced during
+# the dashboard rewrite. Keep them defined here so the router is self-contained.
 
 router = APIRouter()
 
@@ -47,8 +49,8 @@ def _to_schema(row: IncidentRow) -> Incident:
 
 # --- Dashboard stats ---------------------------------------------------------
 
-@router.get("/api/dashboard/stats", response_model=DashboardStats)
-def dashboard_stats(db: Session = Depends(get_db)) -> DashboardStats:
+@router.get("/api/dashboard/stats")
+def dashboard_stats(db: Session = Depends(get_db)) -> dict:
     """KPI strip + chart data for the Dashboard page."""
     now = datetime.utcnow()
     last_24h = now - timedelta(hours=24)
@@ -72,54 +74,57 @@ def dashboard_stats(db: Session = Depends(get_db)) -> DashboardStats:
     false_alert_rate = 0.0
 
     def _count_between(start: datetime, end: datetime) -> tuple[int, int, int]:
-        """(logs, incidents, critical) in [start, end); incidents == logs for now."""
+        """(logs, incidents, critical) in [start, end)."""
         rows = (
             db.query(IncidentRow.is_known, IncidentRow.severity)
             .filter(IncidentRow.timestamp >= start, IncidentRow.timestamp < end)
             .all()
         )
         logs = len(rows)
+        incidents = sum(1 for _, sev in rows if sev != "INFO")
         crit = sum(1 for _, sev in rows if sev == "Critical")
-        return logs, logs, crit
+        return logs, incidents, crit
 
     logs_now, incidents_now, crit_now = _count_between(last_24h, now)
     logs_prev, incidents_prev, crit_prev = _count_between(prev_24h_start, prev_24h_end)
 
-    by_category = [
-        CategoryCount(category=c, count=n)
-        for c, n in db.query(IncidentRow.category, func.count(IncidentRow.id))
-        .group_by(IncidentRow.category)
-        .all()
+    _ALL_CATEGORIES = [
+        "Database Error", "API Failure", "Login Failure", "Payment Issue",
+        "Security Alert", "Resource Usage", "Workflow Error", "User Action",
+        "Unknown",
     ]
-    by_source = [
-        SourceCount(source=s, count=n)
-        for s, n in db.query(IncidentRow.source, func.count(IncidentRow.id))
-        .group_by(IncidentRow.source)
-        .all()
-    ]
-    by_severity = [
-        SeverityCount(severity=s, count=n)
-        for s, n in db.query(IncidentRow.severity, func.count(IncidentRow.id))
-        .group_by(IncidentRow.severity)
-        .all()
-    ]
+    _ALL_SOURCES = ["CRM", "HRMS", "Billing", "Cloud", "Server"]
+    _ALL_SEVERITIES = ["Critical", "High", "Medium", "Low", "Unknown"]
 
-    return DashboardStats(
-        total_logs=total_logs,
-        total_incidents=total_incidents,
-        critical_count=critical_count,
-        unknown_anomalies=unknown_anomalies,
-        avg_detection_ms=round(avg_detection_ms, 2),
-        false_alert_rate=false_alert_rate,
-        change_vs_prev_24h=ChangeDelta(
-            logs=logs_now - logs_prev,
-            incidents=incidents_now - incidents_prev,
-            critical=crit_now - crit_prev,
-        ),
-        by_category=by_category,
-        by_source=by_source,
-        by_severity=by_severity,
+    # Count only real incidents: level != INFO (or category == Unknown).
+    incident_rows = (
+        db.query(IncidentRow.category, IncidentRow.source, IncidentRow.severity)
+        .filter(IncidentRow.level != "INFO")
+        .all()
     )
+    cat_counts: dict[str, int] = {}
+    src_counts: dict[str, int] = {}
+    sev_counts: dict[str, int] = {}
+    for cat, src, sev in incident_rows:
+        cat_counts[cat] = cat_counts.get(cat, 0) + 1
+        src_counts[src] = src_counts.get(src, 0) + 1
+        sev_counts[sev] = sev_counts.get(sev, 0) + 1
+
+    by_category = [CategoryCount(category=c, count=cat_counts.get(c, 0)) for c in _ALL_CATEGORIES]
+    by_source = [SourceCount(source=s, count=src_counts.get(s, 0)) for s in _ALL_SOURCES]
+    by_severity = [SeverityCount(severity=s, count=sev_counts.get(s, 0)) for s in _ALL_SEVERITIES]
+
+    return {
+        "total_logs": total_logs,
+        "total_incidents": total_incidents,
+        "critical_count": critical_count,
+        "unknown_anomalies": unknown_anomalies,
+        "avg_detection_ms": round(avg_detection_ms, 2),
+        "false_alert_rate": false_alert_rate,
+        "by_category": by_category,
+        "by_source": by_source,
+        "by_severity": by_severity,
+    }
 
 
 # --- List ---------------------------------------------------------------------
@@ -193,26 +198,37 @@ def list_incidents(
 def incidents_timeseries(
     db: Session = Depends(get_db),
     days: int = Query(7, ge=1, le=30),
+    tz_offset: int = Query(0, ge=-12, le=14),
 ) -> TimeseriesResponse:
-    """Incident counts bucketed per day, oldest first, for the line chart."""
-    start = (datetime.utcnow() - timedelta(days=days)).replace(
-        hour=0, minute=0, second=0, microsecond=0
-    )
+    """Incident counts bucketed per hour, 24 buckets ending at the current hour."""
+    now = datetime.utcnow()
+    end_hour = now.replace(minute=0, second=0, microsecond=0)
+    start_hour = end_hour - timedelta(hours=23)
     rows = (
-        db.query(IncidentRow.timestamp)
-        .filter(IncidentRow.timestamp >= start)
+        db.query(IncidentRow)
+        .filter(IncidentRow.timestamp >= start_hour)
         .all()
     )
     counts: dict[str, int] = {}
-    for (ts,) in rows:
-        key = ts.strftime("%Y-%m-%d")
+    critical_counts: dict[str, int] = {}
+    for r in rows:
+        bucket = r.timestamp.replace(minute=0, second=0, microsecond=0)
+        key = bucket.isoformat()
         counts[key] = counts.get(key, 0) + 1
+        if r.severity == "Critical":
+            critical_counts[key] = critical_counts.get(key, 0) + 1
 
     points = []
-    for i in range(days):
-        day = start + timedelta(days=i)
-        key = day.strftime("%Y-%m-%d")
-        points.append(TimeseriesPoint(timestamp=key, count=counts.get(key, 0)))
+    for i in range(24):
+            bucket_hour = start_hour + timedelta(hours=i)
+            key = bucket_hour.isoformat()
+            points.append(TimeseriesPoint(
+                time=key,
+                incidents=counts.get(key, 0),
+                critical=critical_counts.get(key, 0),
+                timestamp="",
+                count=0,
+            ))
     return TimeseriesResponse(points=points)
 
 
@@ -221,7 +237,35 @@ def incidents_timeseries(
 @router.get("/api/incidents/{incident_id}", response_model=Incident)
 def get_incident(incident_id: int, db: Session = Depends(get_db)) -> Incident:
     """Single incident for the detail drawer."""
-    return _to_schema(_load_incident(db, incident_id))
+    row = _load_incident(db, incident_id)
+    d = row.to_dict()
+    # Related logs: any other incidents in the same category/source within 1h.
+    related = (
+        db.query(IncidentRow)
+        .filter(
+            IncidentRow.category == row.category,
+            IncidentRow.source == row.source,
+            IncidentRow.timestamp >= row.timestamp - timedelta(hours=1),
+            IncidentRow.timestamp <= row.timestamp + timedelta(hours=1),
+            IncidentRow.id != row.id,
+        )
+        .order_by(IncidentRow.timestamp.desc())
+        .limit(5)
+        .all()
+    )
+    related_logs = [
+        {
+            "id": r.id,
+            "timestamp": r.timestamp.isoformat() + "Z",
+            "level": r.level,
+            "message": r.raw_text,
+            "source": r.source,
+        }
+        for r in related
+    ]
+    d["normalized"] = True
+    d["related_logs"] = related_logs
+    return Incident(**d)
 
 
 @router.patch("/api/incidents/{incident_id}/status", response_model=Incident)
@@ -235,6 +279,32 @@ def update_incident_status(
     row.status = body.status
     db.commit()
     db.refresh(row)
-    return _to_schema(row)
+    d = row.to_dict()
+    # Re-derive related logs + normalised flag to match GET /api/incidents/{id}.
+    related = (
+        db.query(IncidentRow)
+        .filter(
+            IncidentRow.category == row.category,
+            IncidentRow.source == row.source,
+            IncidentRow.timestamp >= row.timestamp - timedelta(hours=1),
+            IncidentRow.timestamp <= row.timestamp + timedelta(hours=1),
+            IncidentRow.id != row.id,
+        )
+        .order_by(IncidentRow.timestamp.desc())
+        .limit(5)
+        .all()
+    )
+    d["related_logs"] = [
+        {
+            "id": r.id,
+            "timestamp": r.timestamp.isoformat() + "Z",
+            "level": r.level,
+            "message": r.raw_text,
+            "source": r.source,
+        }
+        for r in related
+    ]
+    d["normalized"] = True
+    return Incident(**d)
 
 

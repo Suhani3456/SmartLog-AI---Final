@@ -57,6 +57,8 @@ export default function DashboardPage() {
               <LoadingBlock rows={3} />
             ) : series.isError ? (
               <ErrorBlock error={series.error} retry={() => series.refetch()} />
+            ) : series.data!.points.every((p) => p.count === 0) ? (
+              <EmptyBlock message="No data yet. Upload a log file on the Upload page." />
             ) : (
               <ResponsiveContainer width="100%" height={220}>
                 <LineChart data={series.data!.points}>
@@ -75,7 +77,7 @@ export default function DashboardPage() {
           <CardHeader><CardTitle>By category</CardTitle></CardHeader>
           <CardContent>
             {s.by_category.length === 0 ? (
-              <EmptyBlock message="No incidents classified yet. Upload logs or start the stream." />
+              <EmptyBlock message="No data yet. Upload a log file on the Upload page." />
             ) : (
               <ResponsiveContainer width="100%" height={220}>
                 <BarChart data={s.by_category} layout="vertical">
@@ -144,7 +146,7 @@ export default function DashboardPage() {
             <ErrorBlock error={feed.error} retry={() => feed.refetch()} />
           ) : feed.data!.items.length === 0 ? (
             <EmptyBlock
-              message="No incidents match these filters."
+              message="No data yet. Upload a log file on the Upload page."
               action={<Link to="/upload" className="text-teal-700 underline">Upload a log file</Link>}
             />
           ) : (
